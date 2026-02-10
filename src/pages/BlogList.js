@@ -27,21 +27,16 @@ const BlogList = () => {
   const navigate = useNavigate();
   const theme = useTheme();
 
-  useEffect(() => {
-    fetchCategories();
-    fetchBlogs();
-  }, [selectedCategory]);
-
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
-  };
+  }, []);
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     setLoading(true);
     try {
       const params = {};
@@ -55,7 +50,12 @@ const BlogList = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchBlogs();
+  }, [fetchCategories, fetchBlogs]);
 
   const handleBlogClick = (slug) => {
     navigate(`/blog/${slug}`);
