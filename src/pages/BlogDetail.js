@@ -12,6 +12,7 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
 import axios from 'axios';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
 
@@ -21,6 +22,9 @@ const BlogDetail = () => {
   const theme = useTheme();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Set page title when blog is loaded
+  usePageTitle(blog?.title || 'Blog');
 
   const fetchBlog = useCallback(async () => {
     try {
