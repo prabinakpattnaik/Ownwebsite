@@ -7,12 +7,15 @@ import {
   CircularProgress,
   Button,
   Paper,
-  useTheme
+  useTheme,
+  Divider,
+  Stack
 } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowBack } from '@mui/icons-material';
+import { ArrowBack, AccessTime } from '@mui/icons-material';
 import axios from 'axios';
 import { usePageTitle } from '../hooks/usePageTitle';
+import ShareButtons from '../components/ShareButtons';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
 
