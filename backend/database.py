@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import declarative_base
+from sqlalchemy.pool import NullPool
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -10,19 +11,12 @@ load_dotenv(Path(__file__).parent / '.env')
 DATABASE_URL = os.environ.get('DATABASE_URL')
 ASYNC_DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://')
 
-# Create async engine with proper pooler configuration
+# Create async engine with NullPool for transaction pooler
 engine = create_async_engine(
     ASYNC_DATABASE_URL,
-    pool_size=5,
-    max_overflow=2,
-    pool_timeout=30,
-    pool_recycle=1800,
-    pool_pre_ping=True,
+    poolclass=NullPool,
     echo=False,
     connect_args={
-        "server_settings": {
-            "application_name": "netrivium_blog",
-        },
         "statement_cache_size": 0,
         "prepared_statement_cache_size": 0,
     }
