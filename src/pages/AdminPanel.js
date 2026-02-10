@@ -32,10 +32,12 @@ import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
 
 const AdminPanel = () => {
+  usePageTitle('Admin Panel');
   const navigate = useNavigate();
   const theme = useTheme();
   const [tabValue, setTabValue] = useState(0);
