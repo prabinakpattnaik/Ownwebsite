@@ -8,6 +8,7 @@ import { useThemeMode } from '../context/ThemeContext';
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
     const containerRef = React.useRef(null);
+    const { mode } = useThemeMode();
 
     React.useEffect(() => {
         const x = containerRef.current
