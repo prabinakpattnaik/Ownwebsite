@@ -81,7 +81,7 @@ export default function AppAppBar() {
         mt: 'calc(var(--template-frame-height, 0px))',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'space-between' }}>
             {/* Logo + Brand */}
