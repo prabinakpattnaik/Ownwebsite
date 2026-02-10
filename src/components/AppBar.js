@@ -81,31 +81,44 @@ export default function AppAppBar() {
         mt: 'calc(var(--template-frame-height, 0px))',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'space-between' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            width: '100%',
+            justifyContent: 'space-between',
+            flexWrap: 'nowrap'
+          }}>
             {/* Logo + Brand */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={ConnectBeaconLogo} sx={{ height: 50, width: 50, mr: 1 }} />
-            <Typography variant='h6' fontWeight='bold' sx={{ color: '#003366' }}>
+              <Avatar src={ConnectBeaconLogo} sx={{ height: 40, width: 40, mr: 1 }} />
+            <Typography variant='h6' fontWeight='bold' sx={{ color: '#003366', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
              NETRIVIUM
             </Typography>
 	    </Box>
 
             {/* Nav Links */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, ml: 4 }}>
+            <Box sx={{ 
+              display: { xs: 'none', md: 'flex' }, 
+              gap: 1.5, 
+              alignItems: 'center',
+              flexShrink: 0
+            }}>
               {navItems.map((item, index) => (
                 <Button
                   key={index}
                   variant="text"
                   sx={{
                     color: '#18181b',
-                    fontSize: '1rem',
+                    fontSize: '0.9rem',
                     fontWeight: 600,
                     textTransform: 'none',
-                    px: 2,
+                    px: 1.5,
+                    whiteSpace: 'nowrap',
+                    minWidth: 'auto'
                   }}
-                  size="medium"
+                  size="small"
                   onClick={() => {
                     if (item.isRoute) {
                       navigate(item.to);
@@ -120,17 +133,24 @@ export default function AppAppBar() {
             </Box>
 
             {/* Theme Toggle & CTA */}
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Box sx={{ 
+              display: { xs: 'none', md: 'flex' }, 
+              gap: 1, 
+              alignItems: 'center',
+              flexShrink: 0
+            }}>
               <ThemeToggle />
               <Button
                 variant="contained"
                 onClick={() => handleNavClick('book-demo')}
                 sx={{
                   backgroundColor: '#003366',
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   fontWeight: 'bold',
-                  px: 3,
+                  px: 2.5,
+                  py: 0.75,
                   textTransform: 'none',
+                  whiteSpace: 'nowrap',
                   '&:hover': {
                     backgroundColor: '#002244',
                   },
