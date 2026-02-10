@@ -10,18 +10,21 @@ load_dotenv(Path(__file__).parent / '.env')
 DATABASE_URL = os.environ.get('DATABASE_URL')
 ASYNC_DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://')
 
-# Create async engine
+# Create async engine with proper pooler configuration
 engine = create_async_engine(
     ASYNC_DATABASE_URL,
-    pool_size=10,
-    max_overflow=5,
+    pool_size=5,
+    max_overflow=2,
     pool_timeout=30,
     pool_recycle=1800,
-    pool_pre_ping=False,
+    pool_pre_ping=True,
     echo=False,
     connect_args={
-        "statement_cache_size": 0,  # CRITICAL: Required for transaction pooler
-        "command_timeout": 30,
+        "server_settings": {
+            "application_name": "netrivium_blog",
+        },
+        "statement_cache_size": 0,
+        "prepared_statement_cache_size": 0,
     }
 )
 
