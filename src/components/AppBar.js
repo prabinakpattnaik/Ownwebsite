@@ -106,30 +106,39 @@ export default function AppAppBar() {
                     px: 2,
                   }}
                   size="medium"
-                  onClick={() => scroller.scrollTo(item.to, scrollOptions)}
+                  onClick={() => {
+                    if (item.isRoute) {
+                      navigate(item.to);
+                    } else {
+                      handleNavClick(item.to);
+                    }
+                  }}
                 >
                   {item.label}
                 </Button>
               ))}
             </Box>
 
-            {/* CTA Button */}
-            <Button
-              variant="contained"
-              onClick={() => scroller.scrollTo('book-demo', scrollOptions)}
-              sx={{
-                backgroundColor: '#003366',
-                fontSize: '0.95rem',
-                fontWeight: 'bold',
-                px: 3,
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: '#002244',
-                },
-              }}
-            >
-              Book a Demo
-            </Button>
+            {/* Theme Toggle & CTA */}
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+              <ThemeToggle />
+              <Button
+                variant="contained"
+                onClick={() => handleNavClick('book-demo')}
+                sx={{
+                  backgroundColor: '#003366',
+                  fontSize: '0.95rem',
+                  fontWeight: 'bold',
+                  px: 3,
+                  textTransform: 'none',
+                  '&:hover': {
+                    backgroundColor: '#002244',
+                  },
+                }}
+              >
+                Book a Demo
+              </Button>
+            </Box>
           </Box>
 
           {/* Mobile Menu */}
