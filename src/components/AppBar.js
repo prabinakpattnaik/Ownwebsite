@@ -111,12 +111,14 @@ export default function AppAppBar() {
                   variant="text"
                   sx={{
                     color: '#18181b',
-                    fontSize: '1rem',
+                    fontSize: '0.9rem',
                     fontWeight: 600,
                     textTransform: 'none',
-                    px: 2,
+                    px: 1.5,
+                    whiteSpace: 'nowrap',
+                    minWidth: 'auto'
                   }}
-                  size="medium"
+                  size="small"
                   onClick={() => {
                     if (item.isRoute) {
                       navigate(item.to);
