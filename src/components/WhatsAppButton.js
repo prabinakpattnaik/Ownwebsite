@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Fab, Tooltip, Zoom, useTheme } from '@mui/material';
-import { WhatsApp, Close } from '@mui/icons-material';
+import { Fab, Tooltip, Zoom } from '@mui/material';
+import { WhatsApp } from '@mui/icons-material';
 
 const WhatsAppButton = () => {
-  const theme = useTheme();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
