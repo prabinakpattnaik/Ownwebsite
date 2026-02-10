@@ -92,8 +92,8 @@ export default function AppAppBar() {
           }}>
             {/* Logo + Brand */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={ConnectBeaconLogo} sx={{ height: 50, width: 50, mr: 1 }} />
-            <Typography variant='h6' fontWeight='bold' sx={{ color: '#003366' }}>
+              <Avatar src={ConnectBeaconLogo} sx={{ height: 40, width: 40, mr: 1 }} />
+            <Typography variant='h6' fontWeight='bold' sx={{ color: '#003366', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
              NETRIVIUM
             </Typography>
 	    </Box>
