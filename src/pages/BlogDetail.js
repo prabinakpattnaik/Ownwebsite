@@ -26,6 +26,15 @@ const BlogDetail = () => {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Calculate reading time
+  const calculateReadingTime = (content) => {
+    const wordsPerMinute = 200;
+    const textContent = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
+    const wordCount = textContent.split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return minutes;
+  };
+
   // Set page title when blog is loaded
   usePageTitle(blog?.title || 'Blog');
 
