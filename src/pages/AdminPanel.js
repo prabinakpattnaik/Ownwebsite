@@ -62,12 +62,12 @@ const AdminPanel = () => {
   const [categoryDialog, setCategoryDialog] = useState(false);
   const [currentCategory, setCurrentCategory] = useState({ name: '', slug: '' });
 
-  useEffect(() => {
-    fetchBlogs();
-    fetchCategories();
+  const showMessage = useCallback((type, text) => {
+    setMessage({ type, text });
+    setTimeout(() => setMessage({ type: '', text: '' }), 5000);
   }, []);
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/blogs`);
@@ -77,21 +77,21 @@ const AdminPanel = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [showMessage]);
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
       setCategories(response.data);
     } catch (error) {
       showMessage('error', 'Failed to fetch categories');
     }
-  };
+  }, [showMessage]);
 
-  const showMessage = (type, text) => {
-    setMessage({ type, text });
-    setTimeout(() => setMessage({ type: '', text: '' }), 5000);
-  };
+  useEffect(() => {
+    fetchBlogs();
+    fetchCategories();
+  }, [fetchBlogs, fetchCategories]);
 
   // Blog Handlers
   const handleOpenBlogDialog = (blog = null) => {
