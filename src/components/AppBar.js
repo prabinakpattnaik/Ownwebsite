@@ -145,10 +145,12 @@ export default function AppAppBar() {
                 onClick={() => handleNavClick('book-demo')}
                 sx={{
                   backgroundColor: '#003366',
-                  fontSize: '0.95rem',
+                  fontSize: '0.85rem',
                   fontWeight: 'bold',
-                  px: 3,
+                  px: 2.5,
+                  py: 0.75,
                   textTransform: 'none',
+                  whiteSpace: 'nowrap',
                   '&:hover': {
                     backgroundColor: '#002244',
                   },
