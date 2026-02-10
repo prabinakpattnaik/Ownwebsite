@@ -1,9 +1,9 @@
-import { Avatar, Container, Fade, Grid2, IconButton, Stack, Typography } from "@mui/material"
+import { Avatar, Container, Fade, Grid2, IconButton, Stack, Typography, Box, useTheme } from "@mui/material"
 import React from "react";
 import { Link } from "react-scroll";
 import { EmailRounded, Facebook, Instagram, LinkedIn, PinDrop, SupportAgentRounded, Twitter } from "@mui/icons-material";
 import { SUPPORT_EMAIL_ADDRESS } from "../utils/consants";
-import ConnectBeaconLogo from '../assets/connect_beacon_logo.jfif'
+import { useThemeMode } from '../context/ThemeContext';
 
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
