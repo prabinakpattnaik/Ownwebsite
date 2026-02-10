@@ -16,10 +16,12 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
 
 const BlogList = () => {
+  usePageTitle('Blog & Articles');
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
