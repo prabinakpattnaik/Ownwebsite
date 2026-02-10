@@ -92,12 +92,24 @@ export default function AppAppBar() {
             flexWrap: 'nowrap'
           }}>
             {/* Logo + Brand */}
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar src={ConnectBeaconLogo} sx={{ height: 40, width: 40, mr: 1 }} />
-            <Typography variant='h6' fontWeight='bold' sx={{ color: '#003366', fontSize: '1.05rem', whiteSpace: 'nowrap' }}>
-             NETRIVIUM
-            </Typography>
-	    </Box>
+            <Box 
+              sx={{ display: 'flex', alignItems: 'center', flexShrink: 0, cursor: 'pointer' }} 
+              onClick={() => navigate('/')}
+            >
+              <Box
+                component="img"
+                src={mode === 'dark' ? '/logo-horizontal-dark.svg' : '/logo-horizontal.svg'}
+                alt="Netrivium Technologies"
+                sx={{
+                  height: 45,
+                  width: 'auto',
+                  transition: 'transform 0.2s ease',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                  }
+                }}
+              />
+            </Box>
 
             {/* Nav Links */}
             <Box sx={{ 
