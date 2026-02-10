@@ -58,25 +58,25 @@ const ContactForm = () => {
     {
       icon: <Email />,
       title: 'Email Us',
-      content: 'info@netrivium.tech',
-      link: 'mailto:info@netrivium.tech',
+      content: 'info@netrivium.com',
+      link: 'mailto:info@netrivium.com',
     },
     {
       icon: <Phone />,
       title: 'Call Us',
-      content: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      content: '+91-40-49983275',
+      link: 'tel:+914049983275',
     },
     {
       icon: <LocationOn />,
       title: 'Visit Us',
-      content: 'Silicon Valley, CA',
+      content: 'Hitech City, Hyderabad',
       link: null,
     },
     {
       icon: <AccessTime />,
       title: 'Business Hours',
-      content: 'Mon-Fri: 9AM-6PM PST',
+      content: 'Mon-Fri: 9AM-6PM IST',
       link: null,
     },
   ];
