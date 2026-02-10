@@ -7,12 +7,15 @@ import {
   CircularProgress,
   Button,
   Paper,
-  useTheme
+  useTheme,
+  Divider,
+  Stack
 } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowBack } from '@mui/icons-material';
+import { ArrowBack, AccessTime } from '@mui/icons-material';
 import axios from 'axios';
 import { usePageTitle } from '../hooks/usePageTitle';
+import ShareButtons from '../components/ShareButtons';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
 
@@ -22,6 +25,15 @@ const BlogDetail = () => {
   const theme = useTheme();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Calculate reading time
+  const calculateReadingTime = (content) => {
+    const wordsPerMinute = 200;
+    const textContent = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
+    const wordCount = textContent.split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return minutes;
+  };
 
   // Set page title when blog is loaded
   usePageTitle(blog?.title || 'Blog');
@@ -112,14 +124,35 @@ const BlogDetail = () => {
             {blog.title}
           </Typography>
 
-          {/* Date */}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
-            {new Date(blog.created_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </Typography>
+          {/* Meta Information */}
+          <Stack 
+            direction={{ xs: 'column', sm: 'row' }} 
+            spacing={2} 
+            alignItems={{ xs: 'flex-start', sm: 'center' }}
+            justifyContent="space-between"
+            sx={{ mb: 3 }}
+          >
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Typography variant="body2" color="text.secondary">
+                {new Date(blog.created_at).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </Typography>
+              <Stack direction="row" spacing={0.5} alignItems="center">
+                <AccessTime sx={{ fontSize: 18, color: 'text.secondary' }} />
+                <Typography variant="body2" color="text.secondary">
+                  {calculateReadingTime(blog.content)} min read
+                </Typography>
+              </Stack>
+            </Stack>
+            
+            {/* Share Buttons */}
+            <ShareButtons title={blog.title} />
+          </Stack>
+
+          <Divider sx={{ mb: 4 }} />
 
           {/* Featured Image */}
           {blog.image_url && (
