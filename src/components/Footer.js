@@ -43,10 +43,15 @@ const Footer = () => {
                 <Grid2 container pt={5} pb={3} justifyContent={'space-evenly'} spacing={{ xs: 2, md: 5 }} >
                     <Grid2 size={{ xs: 12, sm: 6, md: 4 }} item  >
                         <Stack direction={'column'} gap={2}>
-                            <Avatar
-                                src={ConnectBeaconLogo}
-                                sx={{ height: '80px', width: "80px" }}
-                                variant="square"
+                            <Box
+                                component="img"
+                                src={mode === 'dark' ? '/logo-horizontal-dark.svg' : '/logo-horizontal.svg'}
+                                alt="Netrivium Technologies"
+                                sx={{
+                                    height: 60,
+                                    width: 'auto',
+                                    mb: 2
+                                }}
                             />
                             <Typography textAlign={'justify'}>Netrivium is a leading services company focused on delivering innovative connectivity solutions, cutting-edge SaaS products, and advanced AI/ML technologies.</Typography>
                             <Stack direction={'row'}>
