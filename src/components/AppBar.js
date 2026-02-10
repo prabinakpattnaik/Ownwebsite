@@ -163,7 +163,11 @@ export default function AppAppBar() {
                   <MenuItem
                     key={index}
                     onClick={() => {
-                      scroller.scrollTo(item.to, scrollOptions);
+                      if (item.isRoute) {
+                        navigate(item.to);
+                      } else {
+                        handleNavClick(item.to);
+                      }
                       setOpen(false);
                     }}
                   >
@@ -173,7 +177,7 @@ export default function AppAppBar() {
 
                 <MenuItem
                   onClick={() => {
-                    scroller.scrollTo('book-demo', scrollOptions);
+                    handleNavClick('book-demo');
                     setOpen(false);
                   }}
                 >
