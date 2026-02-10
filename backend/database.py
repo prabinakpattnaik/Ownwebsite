@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.pool import NullPool
 from dotenv import load_dotenv
+import asyncpg
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / '.env')
@@ -11,14 +12,21 @@ load_dotenv(Path(__file__).parent / '.env')
 DATABASE_URL = os.environ.get('DATABASE_URL')
 ASYNC_DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://')
 
+# Custom connection factory to disable prepared statements
+async def get_connection():
+    return await asyncpg.connect(
+        DATABASE_URL,
+        statement_cache_size=0,
+        server_settings={'jit': 'off'}
+    )
+
 # Create async engine with NullPool for transaction pooler
 engine = create_async_engine(
     ASYNC_DATABASE_URL,
     poolclass=NullPool,
     echo=False,
-    connect_args={
-        "statement_cache_size": 0,
-        "prepared_statement_cache_size": 0,
+    execution_options={
+        "compiled_cache": None,
     }
 )
 
