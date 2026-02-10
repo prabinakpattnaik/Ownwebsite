@@ -4,30 +4,19 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.pool import NullPool
 from dotenv import load_dotenv
-import asyncpg
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / '.env')
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
-ASYNC_DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://')
+# Use postgresql+asyncpg with special parameter
+ASYNC_DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+asyncpg://') + '?prepared_statement_cache_size=0'
 
-# Custom connection factory to disable prepared statements
-async def get_connection():
-    return await asyncpg.connect(
-        DATABASE_URL,
-        statement_cache_size=0,
-        server_settings={'jit': 'off'}
-    )
-
-# Create async engine with NullPool for transaction pooler
+# Create async engine with NullPool for Supabase transaction pooler
 engine = create_async_engine(
     ASYNC_DATABASE_URL,
     poolclass=NullPool,
     echo=False,
-    execution_options={
-        "compiled_cache": None,
-    }
 )
 
 # Create session maker
