@@ -59,7 +59,7 @@ function App() {
           <Grid2 item xs={12} md={6}>
             <div style={{ textAlign: 'center', color: 'white' }}>
               <Typography variant='h3' fontWeight='bold' sx={{ color: '#003366' }}>
-                Connect Beacon
+                NETRIVIUM TECHNOLOGIES
               </Typography>
               <br />
               <Typography variant='h5' sx={{ color: '#f1f1f1' }}>
