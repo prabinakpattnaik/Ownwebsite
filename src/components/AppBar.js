@@ -46,6 +46,7 @@ export default function AppAppBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { mode } = useThemeMode();
   
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
