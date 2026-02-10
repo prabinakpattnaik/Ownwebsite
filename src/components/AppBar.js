@@ -133,7 +133,12 @@ export default function AppAppBar() {
             </Box>
 
             {/* Theme Toggle & CTA */}
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Box sx={{ 
+              display: { xs: 'none', md: 'flex' }, 
+              gap: 1, 
+              alignItems: 'center',
+              flexShrink: 0
+            }}>
               <ThemeToggle />
               <Button
                 variant="contained"
