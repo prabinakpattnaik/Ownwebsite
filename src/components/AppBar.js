@@ -83,7 +83,13 @@ export default function AppAppBar() {
     >
       <Container maxWidth="xl">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'space-between' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            width: '100%',
+            justifyContent: 'space-between',
+            flexWrap: 'nowrap'
+          }}>
             {/* Logo + Brand */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Avatar src={ConnectBeaconLogo} sx={{ height: 50, width: 50, mr: 1 }} />
