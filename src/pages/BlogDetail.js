@@ -22,11 +22,7 @@ const BlogDetail = () => {
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBlog();
-  }, [slug]);
-
-  const fetchBlog = async () => {
+  const fetchBlog = useCallback(async () => {
     try {
       const response = await axios.get(`${API_URL}/blogs/slug/${slug}`);
       setBlog(response.data);
@@ -35,7 +31,11 @@ const BlogDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug]);
+
+  useEffect(() => {
+    fetchBlog();
+  }, [fetchBlog]);
 
   if (loading) {
     return (
