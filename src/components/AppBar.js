@@ -99,7 +99,12 @@ export default function AppAppBar() {
 	    </Box>
 
             {/* Nav Links */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, ml: 4 }}>
+            <Box sx={{ 
+              display: { xs: 'none', md: 'flex' }, 
+              gap: 1.5, 
+              alignItems: 'center',
+              flexShrink: 0
+            }}>
               {navItems.map((item, index) => (
                 <Button
                   key={index}
