@@ -1,4 +1,4 @@
-import { Avatar, Container, Fade, Grid2, IconButton, Stack, Typography, Box, useTheme } from "@mui/material"
+import { Container, Fade, Grid2, IconButton, Stack, Typography, Box } from "@mui/material"
 import React from "react";
 import { Link } from "react-scroll";
 import { EmailRounded, Facebook, Instagram, LinkedIn, PinDrop, SupportAgentRounded, Twitter } from "@mui/icons-material";

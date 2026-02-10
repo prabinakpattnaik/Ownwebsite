@@ -8,9 +8,7 @@ import {
   Container,
   MenuItem,
   Drawer,
-  Box,
-  Avatar,
-  Typography
+  Box
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
