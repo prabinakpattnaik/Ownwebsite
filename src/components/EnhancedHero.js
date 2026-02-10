@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Typography, Button, Stack, Chip, useTheme } from '@mui/material';
 import { Link } from 'react-scroll';
 import { CheckCircle, TrendingUp, Security, Speed } from '@mui/icons-material';
-import LighthouseAnimation from './LighthouseAnimation';
+import FlowingNetwork from './FlowingNetwork';
 import { keyframes } from '@mui/system';
 
 const float = keyframes`
