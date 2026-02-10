@@ -43,8 +43,21 @@ const scrollOptions = {
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+
+  const handleNavClick = (to) => {
+    if (isHomePage) {
+      scroller.scrollTo(to, scrollOptions);
+    } else {
+      navigate('/');
+      setTimeout(() => scroller.scrollTo(to, scrollOptions), 100);
+    }
   };
 
   const navItems = [
@@ -54,6 +67,7 @@ export default function AppAppBar() {
     { label: 'Expertise', to: 'expertise' },
     { label: 'Success', to: 'success-metrics' },
     { label: 'Contact', to: 'contact' },
+    { label: 'Blog', to: '/blogs', isRoute: true },
   ];
 
   return (
