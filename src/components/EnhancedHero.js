@@ -224,10 +224,10 @@ const EnhancedHero = () => {
               flex: 1,
               display: 'flex',
               justifyContent: 'center',
-              animation: `${float} 6s ease-in-out infinite`,
+              minHeight: { xs: 300, md: 500 },
             }}
           >
-            <LighthouseAnimation />
+            <FlowingNetwork />
           </Box>
         </Box>
       </Container>
