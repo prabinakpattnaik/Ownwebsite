@@ -1,0 +1,45 @@
+/* LighthouseAnimation.css */
+
+.lighthouse-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.lighthouse-svg {
+  width: 100%;
+  height: auto;
+}
+
+.light-beam {
+  position: absolute;
+  /* top: -50%;
+    left: -50%; */
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 90%);
+  transform-origin: center center;
+  animation: rotateLight 5s linear infinite;
+}
+
+@keyframes rotateLight {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .light-beam {
+    animation: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .light-beam {
+    height: 65%;
+  }
+}

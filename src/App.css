@@ -1,0 +1,142 @@
+/* src/App.css */
+
+/* Reset Styles */
+body,
+html,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Navigation Menu */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  z-index: 1000;
+}
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+.nav-bar li {
+  margin: 0 1.5em;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: #03396c;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-bar a:hover {
+  color: #005b96;
+}
+
+/* Landing Section */
+.landing-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 3.5em; /* Offset for fixed nav-bar */
+  /* background-color: #e0f2ff;  */
+  /* background: linear-gradient(44.44deg, #27dbed7a 7.79%, #4867ffa8 94.18%); */
+  background-image: radial-gradient(ellipse 80% 80% at 50% 30%, hsl(210, 100%, 90%), transparent);
+  /* background-image: radial-gradient(ellipse 80% 80% at 50% 30%, hsl(205.63deg 44.86% 41.96% / 47%), transparent); */
+  /* background-image: radial-gradient(ellipse 180% 100% at 50% 30%, hsl(210, 100%, 90%), transparent); */
+  /* background-image: radial-gradient(ellipse 180% 100% at 50% 30%, hsl(191.08deg 59.1% 83.03%), transparent); */
+  color: #03396c; /* Dark blue text */
+}
+
+.landing-section h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+
+.landing-section p {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* Call-to-Action Button */
+.cta-button {
+  padding: 0.75em 1.5em;
+  font-size: 1em;
+  color: #ffffff;
+  background-color: #03396c;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 1em;
+}
+
+.cta-button:hover {
+  background-color: #005b96;
+}
+
+/* Sections */
+.section {
+  padding: 5em 1em;
+  margin-top: 3.5em; /* Offset for fixed nav-bar */
+}
+
+.section:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.section h2 {
+  font-size: 2.5em;
+  color: #03396c;
+  margin-bottom: 0.5em;
+}
+
+.section p {
+  font-size: 1.2em;
+  color: #555555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .nav-bar ul {
+    flex-direction: column;
+  }
+
+  .nav-bar li {
+    margin: 0.5em 0;
+  }
+
+  .landing-section h1 {
+    font-size: 2.5em;
+  }
+
+  .landing-section p {
+    font-size: 1.2em;
+  }
+
+  .section h2 {
+    font-size: 2em;
+  }
+
+  .section p {
+    font-size: 1em;
+  }
+}
