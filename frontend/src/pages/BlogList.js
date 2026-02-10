@@ -1,0 +1,203 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  Box,
+  Chip,
+  CircularProgress,
+  TextField,
+  MenuItem,
+  useTheme
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
+
+const BlogList = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const navigate = useNavigate();
+  const theme = useTheme();
+
+  useEffect(() => {
+    fetchCategories();
+    fetchBlogs();
+  }, [selectedCategory]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/categories`);
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const fetchBlogs = async () => {
+    setLoading(true);
+    try {
+      const params = {};
+      if (selectedCategory) params.category = selectedCategory;
+      params.published = true;
+      
+      const response = await axios.get(`${API_URL}/blogs`, { params });
+      setBlogs(response.data);
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBlogClick = (slug) => {
+    navigate(`/blog/${slug}`);
+  };
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      sx={{
+        minHeight: '100vh',
+        background: theme.palette.mode === 'dark'
+          ? 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)'
+          : 'linear-gradient(180deg, #f8fafc 0%, #e0e7ff 100%)',
+        pt: 12,
+        pb: 8
+      }}
+    >
+      <Container maxWidth="lg">
+        {/* Header */}
+        <Box textAlign="center" mb={6}>
+          <Typography
+            variant="h2"
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              mb: 2
+            }}
+          >
+            Blog & Articles
+          </Typography>
+          <Typography variant="h6" color="text.secondary" maxWidth="600px" mx="auto">
+            Explore insights, tutorials, and updates from Netrivium Technologies
+          </Typography>
+        </Box>
+
+        {/* Category Filter */}
+        <Box mb={4} display="flex" justifyContent="center">
+          <TextField
+            select
+            label="Filter by Category"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            sx={{ minWidth: 250 }}
+            data-testid="category-filter"
+          >
+            <MenuItem value="">All Categories</MenuItem>
+            {categories.map((cat) => (
+              <MenuItem key={cat.id} value={cat.slug}>
+                {cat.name}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Box>
+
+        {/* Blog Grid */}
+        {blogs.length === 0 ? (
+          <Box textAlign="center" py={8}>
+            <Typography variant="h5" color="text.secondary">
+              No blogs found. Check back soon!
+            </Typography>
+          </Box>
+        ) : (
+          <Grid container spacing={4}>
+            {blogs.map((blog) => (
+              <Grid item xs={12} md={6} lg={4} key={blog.id}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s, box-shadow 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: theme.palette.mode === 'dark'
+                        ? '0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4)'
+                        : '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+                    }
+                  }}
+                  onClick={() => handleBlogClick(blog.slug)}
+                  data-testid={`blog-card-${blog.slug}`}
+                >
+                  {blog.image_url && (
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={blog.image_url}
+                      alt={blog.title}
+                    />
+                  )}
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    {blog.category && (
+                      <Chip
+                        label={blog.category.name}
+                        size="small"
+                        color="primary"
+                        sx={{ mb: 2 }}
+                      />
+                    )}
+                    <Typography variant="h5" gutterBottom fontWeight={600}>
+                      {blog.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" paragraph>
+                      {blog.excerpt || blog.content.substring(0, 150) + '...'}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {new Date(blog.created_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        )}
+
+        {/* Admin Button */}
+        <Box textAlign="center" mt={6}>
+          <Button
+            variant="outlined"
+            onClick={() => navigate('/admin')}
+            data-testid="admin-panel-button"
+          >
+            Admin Panel
+          </Button>
+        </Box>
+      </Container>
+    </Box>
+  );
+};
+
+export default BlogList;
