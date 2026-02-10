@@ -124,14 +124,35 @@ const BlogDetail = () => {
             {blog.title}
           </Typography>
 
-          {/* Date */}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
-            {new Date(blog.created_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </Typography>
+          {/* Meta Information */}
+          <Stack 
+            direction={{ xs: 'column', sm: 'row' }} 
+            spacing={2} 
+            alignItems={{ xs: 'flex-start', sm: 'center' }}
+            justifyContent="space-between"
+            sx={{ mb: 3 }}
+          >
+            <Stack direction="row" spacing={3} alignItems="center">
+              <Typography variant="body2" color="text.secondary">
+                {new Date(blog.created_at).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </Typography>
+              <Stack direction="row" spacing={0.5} alignItems="center">
+                <AccessTime sx={{ fontSize: 18, color: 'text.secondary' }} />
+                <Typography variant="body2" color="text.secondary">
+                  {calculateReadingTime(blog.content)} min read
+                </Typography>
+              </Stack>
+            </Stack>
+            
+            {/* Share Buttons */}
+            <ShareButtons title={blog.title} />
+          </Stack>
+
+          <Divider sx={{ mb: 4 }} />
 
           {/* Featured Image */}
           {blog.image_url && (
