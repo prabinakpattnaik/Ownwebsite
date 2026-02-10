@@ -14,10 +14,10 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ConnectBeaconLogo from '../assets/connect_beacon_logo.jfif';
 import { scroller } from 'react-scroll';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import { useThemeMode } from '../context/ThemeContext';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
