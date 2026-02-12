@@ -1,5 +1,6 @@
 // src/pages/HomePage.js
 import React from 'react';
+import { Box } from '@mui/material';
 import EnhancedHero from '../components/EnhancedHero';
 import Highlights from '../components/Highlights';
 import About from '../components/About';
@@ -15,20 +16,40 @@ import WhatsAppButton from '../components/WhatsAppButton';
 
 function HomePage() {
   return (
-    <div>
-      <EnhancedHero />
-      <Highlights />
-      <About />
-      <AIUseCases />
-      <DevExpertise />
-      <SuccessMetrics />
-      <Testimonials />
-      <ContactForm />
-      <BookDemo />
-      <Newsletter />
+    <Box>
+      <div id="home">
+        <EnhancedHero />
+      </div>
+      <div id="highlights">
+        <Highlights />
+      </div>
+      <div id="about">
+        <About />
+      </div>
+      <div id="ai-use-cases">
+        <AIUseCases />
+      </div>
+      <div id="expertise">
+        <DevExpertise />
+      </div>
+      <div id="success-metrics">
+        <SuccessMetrics />
+      </div>
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+      <div id="contact">
+        <ContactForm />
+      </div>
+      <div id="book-demo">
+        <BookDemo />
+      </div>
+      <div id="newsletter">
+        <Newsletter />
+      </div>
       <Footer />
       <WhatsAppButton />
-    </div>
+    </Box>
   );
 }
 
