@@ -13,11 +13,11 @@ import {
 } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowBack, AccessTime } from '@mui/icons-material';
-import axios from 'axios';
 import { usePageTitle } from '../hooks/usePageTitle';
 import ShareButtons from '../components/ShareButtons';
-
-const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
+import { supabase } from '../lib/supabase';
+import PageSEO from '../components/PageSEO';
+import toast from 'react-hot-toast';
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -40,10 +40,20 @@ const BlogDetail = () => {
 
   const fetchBlog = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_URL}/blogs/slug/${slug}`);
-      setBlog(response.data);
+      const { data, error } = await supabase
+        .from('blogs')
+        .select(`
+            *,
+            category:categories(*)
+          `)
+        .eq('slug', slug)
+        .single();
+
+      if (error) throw error;
+      setBlog(data);
     } catch (error) {
       console.error('Error fetching blog:', error);
+      toast.error('Could not load blog post');
     } finally {
       setLoading(false);
     }
@@ -64,6 +74,7 @@ const BlogDetail = () => {
   if (!blog) {
     return (
       <Container maxWidth="md" sx={{ py: 8 }}>
+        <PageSEO title="Blog Not Found" />
         <Typography variant="h4" gutterBottom>
           Blog not found
         </Typography>
@@ -85,6 +96,7 @@ const BlogDetail = () => {
         pb: 8
       }}
     >
+      <PageSEO title={blog.title} description={blog.excerpt} />
       <Container maxWidth="md">
         <Button
           startIcon={<ArrowBack />}
@@ -125,9 +137,9 @@ const BlogDetail = () => {
           </Typography>
 
           {/* Meta Information */}
-          <Stack 
-            direction={{ xs: 'column', sm: 'row' }} 
-            spacing={2} 
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
             alignItems={{ xs: 'flex-start', sm: 'center' }}
             justifyContent="space-between"
             sx={{ mb: 3 }}
@@ -147,7 +159,7 @@ const BlogDetail = () => {
                 </Typography>
               </Stack>
             </Stack>
-            
+
             {/* Share Buttons */}
             <ShareButtons title={blog.title} />
           </Stack>

@@ -10,19 +10,48 @@ import {
   useTheme,
 } from '@mui/material';
 import { EmailOutlined, Send } from '@mui/icons-material';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 const Newsletter = () => {
   const theme = useTheme();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (email) {
-      console.log('Newsletter subscription:', email);
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
+      const toastId = toast.loading('Subscribing...');
+      try {
+        const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+        const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+        if (serviceId === 'YOUR_SERVICE_ID') {
+          // Fallback
+          console.warn('EmailJS not configured.');
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          toast.success('Subscribed! (Mock)', { id: toastId });
+        } else {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              from_email: email,
+              message: 'Newsletter Subscription Request',
+            },
+            publicKey
+          );
+          toast.success('Successfully subscribed!', { id: toastId });
+        }
+
+        setSubscribed(true);
+        setEmail('');
+        setTimeout(() => setSubscribed(false), 5000);
+      } catch (error) {
+        console.error('Newsletter Error:', error);
+        toast.error('Subscription failed. Please try again.', { id: toastId });
+      }
     }
   };
 

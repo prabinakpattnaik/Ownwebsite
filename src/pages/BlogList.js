@@ -9,16 +9,15 @@ import {
   Button,
   Box,
   Chip,
-  CircularProgress,
   TextField,
   MenuItem,
-  useTheme
+  useTheme,
+  Skeleton,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { usePageTitle } from '../hooks/usePageTitle';
-
-const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001/api';
+import { supabase } from '../lib/supabase';
+import toast from 'react-hot-toast';
 
 const BlogList = () => {
   usePageTitle('Blog & Articles');
@@ -31,24 +30,51 @@ const BlogList = () => {
 
   const fetchCategories = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_URL}/categories`);
-      setCategories(response.data);
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name');
+
+      if (error) throw error;
+      setCategories(data || []);
     } catch (error) {
       console.error('Error fetching categories:', error);
+      toast.error('Could not load categories');
     }
   }, []);
 
   const fetchBlogs = useCallback(async () => {
     setLoading(true);
     try {
-      const params = {};
-      if (selectedCategory) params.category = selectedCategory;
-      params.published = true;
-      
-      const response = await axios.get(`${API_URL}/blogs`, { params });
-      setBlogs(response.data);
+      let query = supabase
+        .from('blogs')
+        .select(`
+          *,
+          category:categories(*)
+        `)
+        .eq('published', true)
+        .order('created_at', { ascending: false });
+
+      if (selectedCategory) {
+        // First get the category ID from the slug
+        const { data: catData } = await supabase
+          .from('categories')
+          .select('id')
+          .eq('slug', selectedCategory)
+          .single();
+
+        if (catData) {
+          query = query.eq('category_id', catData.id);
+        }
+      }
+
+      const { data, error } = await query;
+
+      if (error) throw error;
+      setBlogs(data || []);
     } catch (error) {
       console.error('Error fetching blogs:', error);
+      toast.error('Failed to load blogs');
     } finally {
       setLoading(false);
     }
@@ -66,7 +92,15 @@ const BlogList = () => {
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
-        <CircularProgress />
+        <Grid container spacing={4}>
+          {[1, 2, 3].map((n) => (
+            <Grid item xs={12} md={6} lg={4} key={n}>
+              <Skeleton variant="rectangular" height={200} sx={{ borderRadius: 2, mb: 2 }} />
+              <Skeleton variant="text" height={40} sx={{ mb: 1 }} />
+              <Skeleton variant="text" height={20} width="60%" />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     );
   }

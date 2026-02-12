@@ -18,6 +18,8 @@ import {
   Send,
   AccessTime,
 } from '@mui/icons-material';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 const ContactForm = () => {
   const theme = useTheme();
@@ -37,13 +39,41 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+
+    // Loading toast
+    const toastId = toast.loading('Sending message...');
+
+    try {
+      // Replace these with your actual Service ID, Template ID, and Public Key
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+      if (serviceId === 'YOUR_SERVICE_ID') {
+        // Fallback if not configured, just to show it works UI-wise
+        console.warn('EmailJS not configured. Using mock success.');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        toast.success('Message sent! (Mock mode - Config required)', { id: toastId });
+        setSubmitted(true);
+      } else {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            message: formData.message,
+          },
+          publicKey
+        );
+        toast.success('Message sent successfully!', { id: toastId });
+        setSubmitted(true);
+      }
+
       setFormData({
         name: '',
         email: '',
@@ -51,7 +81,16 @@ const ContactForm = () => {
         phone: '',
         message: '',
       });
-    }, 3000);
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error('Failed to send message. Please try again.', { id: toastId });
+    }
   };
 
   const contactInfo = [
