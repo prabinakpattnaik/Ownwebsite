@@ -45,7 +45,7 @@ export const ThemeProvider = ({ children }) => {
           },
         },
         typography: {
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
           h1: {
             fontWeight: 700,
           },
@@ -75,7 +75,7 @@ export const ThemeProvider = ({ children }) => {
           MuiCard: {
             styleOverrides: {
               root: {
-                boxShadow: mode === 'light' 
+                boxShadow: mode === 'light'
                   ? '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)'
                   : '0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)',
               },

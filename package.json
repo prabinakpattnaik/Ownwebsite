@@ -6,6 +6,7 @@
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@fontsource/inter": "^5.2.8",
     "@mui/icons-material": "^6.4.11",
     "@mui/material": "^6.1.7",
     "@supabase/supabase-js": "^2.95.3",

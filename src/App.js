@@ -16,12 +16,15 @@ import AppAppBar from './components/AppBar';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
         <Router>
           <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+          <ScrollToTop />
           <div className="App">
             <AppAppBar />
             <Routes>

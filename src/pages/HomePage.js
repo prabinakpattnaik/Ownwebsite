@@ -14,39 +14,69 @@ import BookDemo from '../components/BookDemo';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 
+import RevealOnScroll from '../components/RevealOnScroll';
+
 function HomePage() {
   return (
     <Box>
       <div id="home">
         <EnhancedHero />
       </div>
+
       <div id="highlights">
-        <Highlights />
+        <RevealOnScroll delay={200}>
+          <Highlights />
+        </RevealOnScroll>
       </div>
+
       <div id="about">
-        <About />
+        <RevealOnScroll>
+          <About />
+        </RevealOnScroll>
       </div>
+
       <div id="ai-use-cases">
-        <AIUseCases />
+        <RevealOnScroll>
+          <AIUseCases />
+        </RevealOnScroll>
       </div>
+
       <div id="expertise">
-        <DevExpertise />
+        <RevealOnScroll>
+          <DevExpertise />
+        </RevealOnScroll>
       </div>
+
       <div id="success-metrics">
-        <SuccessMetrics />
+        <RevealOnScroll>
+          <SuccessMetrics />
+        </RevealOnScroll>
       </div>
+
       <div id="testimonials">
-        <Testimonials />
+        <RevealOnScroll>
+          <Testimonials />
+        </RevealOnScroll>
       </div>
+
       <div id="contact">
-        <ContactForm />
+        <RevealOnScroll>
+          <ContactForm />
+        </RevealOnScroll>
       </div>
+
       <div id="book-demo">
-        <BookDemo />
+        <RevealOnScroll>
+          <BookDemo />
+        </RevealOnScroll>
       </div>
+
       <div id="newsletter">
-        <Newsletter />
+        <RevealOnScroll>
+          <Newsletter />
+        </RevealOnScroll>
       </div>
+
       <Footer />
       <WhatsAppButton />
     </Box>

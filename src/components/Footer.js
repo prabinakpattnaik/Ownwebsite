@@ -3,12 +3,11 @@ import React from "react";
 import { Link } from "react-scroll";
 import { EmailRounded, Facebook, Instagram, LinkedIn, PinDrop, SupportAgentRounded, Twitter } from "@mui/icons-material";
 import { SUPPORT_EMAIL_ADDRESS } from "../utils/consants";
-import { useThemeMode } from '../context/ThemeContext';
 
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
     const containerRef = React.useRef(null);
-    const { mode } = useThemeMode();
+    // const { mode } = useThemeMode(); // Removed unused mode
 
     React.useEffect(() => {
         const x = containerRef.current
@@ -31,133 +30,93 @@ const Footer = () => {
             }
         };
     }, []);
-    return <footer style={{ backgroundColor: "#d3e1ef5c", color: "gray" }}>
-
+    return <footer style={{ backgroundColor: "#0f172a", color: "#94a3b8" }}>
         <Container
+            maxWidth="xl"
             sx={{
                 gap: { xs: 3, sm: 6 },
             }}
             ref={containerRef}
         >
             <Fade appear in={isVisible} style={{ transitionDelay: `${200}ms` }}>
-                <Grid2 container pt={5} pb={3} justifyContent={'space-evenly'} spacing={{ xs: 2, md: 5 }} >
-                    <Grid2 size={{ xs: 12, sm: 6, md: 4 }} item  >
-                        <Stack direction={'column'} gap={2}>
+                <Grid2 container pt={8} pb={6} justifyContent={'space-between'} spacing={4} >
+                    <Grid2 size={{ xs: 12, md: 4 }} item>
+                        <Stack direction={'column'} gap={3}>
                             <Box
                                 component="img"
-                                src={mode === 'dark' ? '/logo-horizontal-dark.svg' : '/logo-horizontal.svg'}
+                                src="/logo-horizontal-dark.svg"
                                 alt="Netrivium Technologies"
                                 sx={{
-                                    height: 60,
+                                    height: 40,
                                     width: 'auto',
-                                    mb: 2
+                                    mb: 1
                                 }}
                             />
-                            <Typography textAlign={'justify'}>Netrivium is a leading services company focused on delivering innovative connectivity solutions, cutting-edge SaaS products, and advanced AI/ML technologies.</Typography>
-                            <Stack direction={'row'}>
-                                <IconButton><Twitter sx={{ color: "#1DA1F2" }} /></IconButton>
-                                <IconButton><Instagram sx={{ color: "#cd486b" }} /></IconButton>
-                                <IconButton><Facebook sx={{ color: "#4267B2" }} /></IconButton>
-                                <IconButton onClick={() => {
+                            <Typography textAlign={'left'} sx={{ lineHeight: 1.8 }}>
+                                Netrivium is a leading services company focused on delivering innovative connectivity solutions, cutting-edge SaaS products, and advanced AI/ML technologies.
+                            </Typography>
+                            <Stack direction={'row'} spacing={1}>
+                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#1DA1F2" } }}><Twitter /></IconButton>
+                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#cd486b" } }}><Instagram /></IconButton>
+                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#4267B2" } }}><Facebook /></IconButton>
+                                <IconButton size="small" onClick={() => {
                                     window.open("https://www.linkedin.com/company/connect-beacon/", '_blank')
-                                }}><LinkedIn sx={{ color: "#004182" }} /></IconButton>
+                                }} sx={{ color: "#94a3b8", '&:hover': { color: "#004182" } }}><LinkedIn /></IconButton>
                             </Stack>
                         </Stack>
                     </Grid2 >
-                    <Grid2 size={{ xs: 12, sm: 6, md: 2.5 }} item  >
-                        <Stack direction={'column'} gap={2}>
-                            <Typography variant="h5" color="textPrimary" fontSize={'24px'} borderBottom={'1px solid #eee'} fontWeight={600}>
+
+                    <Grid2 size={{ xs: 12, sm: 6, md: 2 }} item>
+                        <Stack direction={'column'} gap={2.5}>
+                            <Typography variant="h6" color="white" fontWeight={700}>
                                 Explore
                             </Typography>
-                            <Link
-                                to="home"
-                                smooth={true}
-                                duration={500}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                to="about"
-                                smooth={true}
-                                duration={500}
-                                offset={-80}
-                            >
-                                About
-                            </Link>
-                            <Link
-                                to="services"
-                                smooth={true}
-                                duration={500}
-                            >
-                                Services
-                            </Link>
+                            <Link to="home" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Home</Link>
+                            <Link to="about" smooth={true} duration={500} offset={-80} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>About</Link>
+                            <Link to="services" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Services</Link>
                         </Stack>
                     </Grid2 >
-                    <Grid2 size={{ xs: 12, sm: 6, md: 2.5 }} item  >
-                        <Stack direction={'column'} gap={2}>
-                            <Typography variant="h5" color="textPrimary" fontSize={'24px'} borderBottom={'1px solid #eee'} fontWeight={600}>
+
+                    <Grid2 size={{ xs: 12, sm: 6, md: 2 }} item>
+                        <Stack direction={'column'} gap={2.5}>
+                            <Typography variant="h6" color="white" fontWeight={700}>
                                 Legal
                             </Typography>
-                            <Link
-                                to="terms"
-                                smooth={true}
-                                duration={500}
-                            >
-                                Terms
-                            </Link>
-                            <Link
-                                to="privacy"
-                                smooth={true}
-                                duration={500}
-                            >
-                                Privacy
-                            </Link>
-                            <Link
-                                to="contact"
-                                smooth={true}
-                                duration={500}
-                                offset={-80}
-                            >
-                                Contact
-                            </Link>
+                            <Link to="terms" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Terms</Link>
+                            <Link to="privacy" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Privacy</Link>
+                            <Link to="contact" smooth={true} duration={500} offset={-80} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Contact</Link>
                         </Stack>
                     </Grid2 >
-                    <Grid2 size={{ xs: 12, sm: 6, md: 3 }} item  >
-                        <Stack direction={'column'} gap={2}>
-                            <Typography variant="h5" color="textPrimary" fontSize={'24px'} borderBottom={'1px solid #eee'} fontWeight={600}>
+
+                    <Grid2 size={{ xs: 12, sm: 6, md: 3 }} item>
+                        <Stack direction={'column'} gap={2.5}>
+                            <Typography variant="h6" color="white" fontWeight={700}>
                                 Get In Touch
                             </Typography>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <PinDrop color="primary" />
-                                <Typography>Hyderabad,
-                                    India
-                                </Typography>
-
+                                <PinDrop sx={{ color: '#6366f1' }} />
+                                <Typography>Hitech City, Hyderabad, India</Typography>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <SupportAgentRounded color="success" />
-                                <Typography>+914049983275
-                                </Typography>
-
+                                <SupportAgentRounded sx={{ color: '#6366f1' }} />
+                                <Typography>+91-40-49983275</Typography>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <EmailRounded color="warning" />
-                                <Typography>{SUPPORT_EMAIL_ADDRESS}
-                                </Typography>
-
+                                <EmailRounded sx={{ color: '#6366f1' }} />
+                                <Typography>{SUPPORT_EMAIL_ADDRESS}</Typography>
                             </Stack>
-
                         </Stack>
                     </Grid2 >
-
                 </Grid2>
-
             </Fade>
-
         </Container>
-        <Stack sx={{ backgroundColor: "black", height: "50px" }} justifyContent={'center'} alignItems={'center'}>
-            <Typography>Copyright  &#169; 2026 NETRIVIUM TECHNOLOGIES. All Rights Reserved.</Typography>
-        </Stack>
+        <Box sx={{ borderTop: '1px solid #1e293b', py: 3, mt: 4 }}>
+            <Container maxWidth="xl">
+                <Typography textAlign="center" variant="body2" sx={{ opacity: 0.8 }}>
+                    Copyright &#169; {new Date().getFullYear()} NETRIVIUM TECHNOLOGIES. All Rights Reserved.
+                </Typography>
+            </Container>
+        </Box>
     </footer>
 }
 
