@@ -3,6 +3,7 @@ import { Box, Container, Grid, Paper, Stack, Typography } from "@mui/material";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import WebIcon from "@mui/icons-material/Web";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
+import StorageRoundedIcon from "@mui/icons-material/StorageRounded";
 
 const devSkills = [
   {
@@ -20,6 +21,11 @@ const devSkills = [
     title: "Full-Stack Engineering",
     desc: "Complete frontend-backend integration using Node.js, Python, Go, and cloud-native stacks.",
   },
+  {
+    icon: <StorageRoundedIcon color="warning" sx={{ fontSize: 40 }} />,
+    title: "Cloud & DevOps",
+    desc: "Scalable infrastructure with Kubernetes, Docker, and CI/CD pipelines on AWS/Azure/GCP.",
+  },
 ];
 
 export default function DevExpertise() {
@@ -32,9 +38,9 @@ export default function DevExpertise() {
             <Typography variant="h4" fontWeight="bold" mb={4}>
               Our Development Expertise
             </Typography>
-            <Grid container spacing={4} style={{marginTop:"-80px"}}>
+            <Grid container spacing={4} style={{ marginTop: "-80px" }}>
               {devSkills.map((skill, i) => (
-                <Grid item xs={12} sm={6} key={i} style={{paddingTop:"80px"}}>
+                <Grid item xs={12} sm={6} key={i} style={{ paddingTop: "80px" }}>
                   <Paper elevation={3} sx={{ p: 4, textAlign: "center", height: "100%" }}>
                     <Stack spacing={2} alignItems="center">
                       {skill.icon}

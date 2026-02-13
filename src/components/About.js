@@ -18,6 +18,7 @@ import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import SmartToyRoundedIcon from "@mui/icons-material/SmartToyRounded";
 import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded";
+import CloudQueueRoundedIcon from "@mui/icons-material/CloudQueueRounded";
 
 import { blue, green, pink, purple, red, yellow } from "@mui/material/colors";
 import aboutus from "../assets/about.png"; // make sure this path is correct
@@ -34,6 +35,11 @@ const items = [
     icon: <ConstructionRoundedIcon sx={{ color: blue[900], fontSize: 34 }} />,
     title: "Infrastructure Ready",
     description: "Deploy SD-WAN, LTE/5G, and secure datacenter networks with ease.",
+  },
+  {
+    icon: <CloudQueueRoundedIcon sx={{ color: blue[700], fontSize: 34 }} />,
+    title: "Cloud & Platform Engineering",
+    description: "Deep expertise in public/private cloud, Kubernetes, and container orchestration.",
   },
   {
     icon: <SmartToyRoundedIcon sx={{ color: deepOrange[700], fontSize: 34 }} />,
@@ -100,8 +106,11 @@ export default function AboutPage() {
             <Typography component="h2" variant="h4" gutterBottom>
               About Us
             </Typography>
-            <Typography color="text.secondary">
-              Netrivium delivers modern connectivity and SaaS solutions tailored to dynamic enterprise environments. Our offerings include LTE/5G infrastructure, WAN optimization, secure access (SASE/Zero Trust), and full-stack SaaS development backed by robust observability and AI-driven analytics.
+            <Typography color="text.secondary" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+              Netrivium empowers dynamic enterprise environments with high-performance connectivity and bespoke SaaS solutions. Our comprehensive offerings span LTE/5G infrastructure, WAN optimization, and Next-Gen secure access (SASE/Zero Trust).
+            </Typography>
+            <Typography color="text.secondary" sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+              Beyond connectivity, we bring deep expertise across modern platform infrastructure—spanning public cloud, private cloud, and Kubernetes & Containers—to ensure your digital foundation is scalable, secure, and future-ready.
             </Typography>
           </Stack>
         </Stack>
@@ -115,7 +124,7 @@ export default function AboutPage() {
         <Grid container spacing={3} >
           {items.map((item, index) => (
             <Zoom in={isVisible} style={{ transitionDelay: `${index * 200}ms` }} key={index}>
-              <Grid item xs={12} sm={6} md={4} style={{paddingTop:"42px"}}>
+              <Grid item xs={12} sm={6} md={4} style={{ paddingTop: "42px" }}>
                 <Stack
                   direction="column"
                   component={Card}
