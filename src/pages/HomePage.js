@@ -1,6 +1,7 @@
 // src/pages/HomePage.js
 import React from 'react';
 import { Box } from '@mui/material';
+import PageSEO from '../components/PageSEO';
 import EnhancedHero from '../components/EnhancedHero';
 import Highlights from '../components/Highlights';
 import About from '../components/About';
@@ -19,6 +20,7 @@ import RevealOnScroll from '../components/RevealOnScroll';
 function HomePage() {
   return (
     <Box>
+      <PageSEO />
       <div id="home">
         <EnhancedHero />
       </div>

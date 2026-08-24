@@ -1,6 +1,6 @@
 import { Avatar, Container, Stack, Typography } from "@mui/material";
 import contactus from "../assets/contact.jpg";
-import { SUPPORT_EMAIL_ADDRESS } from "../utils/consants";
+import { SUPPORT_EMAIL_ADDRESS } from "../utils/constants";
 
 const Contact = () => {
   return (

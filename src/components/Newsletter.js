@@ -61,7 +61,7 @@ const Newsletter = () => {
         py: 8,
         background: theme.palette.mode === 'dark'
           ? 'linear-gradient(135deg, #312e81 0%, #1e293b 100%)'
-          : 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+          : 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
       }}
     >
       <Container maxWidth="md">
@@ -167,7 +167,7 @@ const Newsletter = () => {
                   px: 4,
                   py: 1.5,
                   backgroundColor: 'white',
-                  color: '#6366f1',
+                  color: '#0A5BD3',
                   fontWeight: 700,
                   textTransform: 'none',
                   fontSize: '1rem',

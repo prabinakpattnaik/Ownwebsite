@@ -1,0 +1,6 @@
+# https://www.netrivium.com robots
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://www.netrivium.com/sitemap.xml

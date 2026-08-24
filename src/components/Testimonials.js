@@ -73,7 +73,7 @@ const Testimonials = () => {
               fontWeight: 700,
               mt: 1,
               mb: 2,
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
@@ -144,7 +144,7 @@ const Testimonials = () => {
                       sx={{
                         width: 56,
                         height: 56,
-                        background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                        background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
                         fontWeight: 700,
                         fontSize: '1.2rem',
                       }}

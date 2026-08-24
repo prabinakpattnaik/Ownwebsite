@@ -149,7 +149,7 @@ const ContactForm = () => {
               fontWeight: 700,
               mt: 1,
               mb: 2,
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
@@ -197,7 +197,7 @@ const ContactForm = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                        background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
                         color: 'white',
                       }}
                     >
@@ -326,9 +326,9 @@ const ContactForm = () => {
                         fontSize: '1rem',
                         fontWeight: 600,
                         textTransform: 'none',
-                        background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                        background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
                         '&:hover': {
-                          background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                          background: 'linear-gradient(135deg, #08213D 0%, #0A5BD3 100%)',
                         },
                       }}
                       data-testid="contact-submit-button"

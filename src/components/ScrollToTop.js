@@ -37,8 +37,8 @@ const ScrollToTop = () => {
                     bottom: 32,
                     right: 32,
                     zIndex: 9999,
-                    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-                    boxShadow: '0 8px 20px rgba(99, 102, 241, 0.3)',
+                    background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
+                    boxShadow: '0 8px 20px rgba(10, 91, 211, 0.3)',
                     '&:hover': {
                         transform: 'translateY(-2px)',
                     }

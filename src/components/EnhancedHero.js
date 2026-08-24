@@ -38,8 +38,8 @@ const EnhancedHero = () => {
         position: 'relative',
         minHeight: '100vh',
         background: theme.palette.mode === 'dark'
-          ? 'linear-gradient(-45deg, #1e293b, #312e81, #4c1d95, #1e3a8a)'
-          : 'linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe)',
+          ? 'linear-gradient(-45deg, #04101F, #08213D, #0A3D8F, #0A5BD3)'
+          : 'linear-gradient(-45deg, #08213D, #0A3D8F, #0A5BD3, #00B7E3)',
         backgroundSize: '400% 400%',
         animation: `${gradientShift} 15s ease infinite`,
         display: 'flex',
@@ -168,7 +168,7 @@ const EnhancedHero = () => {
                   size="large"
                   sx={{
                     backgroundColor: 'white',
-                    color: '#6366f1',
+                    color: '#0A5BD3',
                     fontWeight: 700,
                     px: 4,
                     py: 1.5,

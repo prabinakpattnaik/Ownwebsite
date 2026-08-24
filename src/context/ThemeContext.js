@@ -25,39 +25,37 @@ export const ThemeProvider = ({ children }) => {
       createTheme({
         palette: {
           mode,
+          // Netrivium brand — electric blue + cyan on deep navy.
           primary: {
-            main: mode === 'light' ? '#6366f1' : '#818cf8',
-            light: '#818cf8',
-            dark: '#4f46e5',
+            main: mode === 'light' ? '#0A5BD3' : '#35D9FF',
+            light: mode === 'light' ? '#1B5292' : '#6FEAFF',
+            dark: mode === 'light' ? '#08213D' : '#0A5BD3',
+            contrastText: mode === 'light' ? '#ffffff' : '#08213D',
           },
           secondary: {
-            main: mode === 'light' ? '#8b5cf6' : '#a78bfa',
-            light: '#a78bfa',
-            dark: '#7c3aed',
+            main: '#00B7E3',
+            light: '#35D9FF',
+            dark: '#1B5292',
           },
           background: {
-            default: mode === 'light' ? '#f8fafc' : '#0f172a',
-            paper: mode === 'light' ? '#ffffff' : '#1e293b',
+            default: mode === 'light' ? '#F4F8FC' : '#08213D',
+            paper: mode === 'light' ? '#ffffff' : '#0C2A4A',
           },
           text: {
-            primary: mode === 'light' ? '#1e293b' : '#f1f5f9',
-            secondary: mode === 'light' ? '#64748b' : '#cbd5e1',
+            primary: mode === 'light' ? '#08213D' : '#EAF2FB',
+            secondary: mode === 'light' ? '#4A5B70' : '#9FB6CE',
           },
+          divider: mode === 'light' ? 'rgba(8,33,61,0.12)' : 'rgba(234,242,251,0.12)',
         },
         typography: {
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          h1: {
-            fontWeight: 700,
-          },
-          h2: {
-            fontWeight: 700,
-          },
-          h3: {
-            fontWeight: 600,
-          },
-          h4: {
-            fontWeight: 600,
-          },
+          // Brand display face (Montserrat) for headings; loaded via <link> in index.html.
+          h1: { fontFamily: "'Montserrat', sans-serif", fontWeight: 800 },
+          h2: { fontFamily: "'Montserrat', sans-serif", fontWeight: 800 },
+          h3: { fontFamily: "'Montserrat', sans-serif", fontWeight: 700 },
+          h4: { fontFamily: "'Montserrat', sans-serif", fontWeight: 700 },
+          h5: { fontFamily: "'Montserrat', sans-serif", fontWeight: 600 },
+          h6: { fontFamily: "'Montserrat', sans-serif", fontWeight: 600 },
         },
         shape: {
           borderRadius: 12,

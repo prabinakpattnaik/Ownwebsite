@@ -124,7 +124,7 @@ const BlogList = () => {
             gutterBottom
             sx={{
               fontWeight: 700,
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               mb: 2

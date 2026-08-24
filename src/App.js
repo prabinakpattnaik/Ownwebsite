@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import BlogList from './pages/BlogList';
 import BlogDetail from './pages/BlogDetail';
 import AdminPanel from './pages/AdminPanel';
+import LegalPage from './pages/LegalPage';
 
 // Components
 import AppAppBar from './components/AppBar';
@@ -32,6 +33,8 @@ function App() {
               <Route path="/blogs" element={<BlogList />} />
               <Route path="/blog/:slug" element={<BlogDetail />} />
               <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/privacy" element={<LegalPage kind="privacy" />} />
+              <Route path="/terms" element={<LegalPage kind="terms" />} />
             </Routes>
           </div>
         </Router>
