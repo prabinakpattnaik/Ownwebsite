@@ -1,8 +1,9 @@
 import { Container, Fade, Grid2, IconButton, Stack, Typography, Box } from "@mui/material"
 import React from "react";
 import { Link } from "react-scroll";
-import { EmailRounded, Facebook, Instagram, LinkedIn, PinDrop, SupportAgentRounded, Twitter } from "@mui/icons-material";
-import { SUPPORT_EMAIL_ADDRESS } from "../utils/consants";
+import { Link as RouterLink } from "react-router-dom";
+import { EmailRounded, Facebook, Instagram, LanguageRounded, LinkedIn, PinDrop, SupportAgentRounded, Twitter } from "@mui/icons-material";
+import { SUPPORT_EMAIL_ADDRESS, COMPANY_PHONE, COMPANY_ADDRESS, SOCIAL_LINKS, SITE_URL } from "../utils/constants";
 
 const Footer = () => {
     const [isVisible, setIsVisible] = React.useState(false);
@@ -44,10 +45,10 @@ const Footer = () => {
                         <Stack direction={'column'} gap={3}>
                             <Box
                                 component="img"
-                                src="/logo-horizontal-dark.svg"
+                                src="/brand/logo-horizontal-white.svg"
                                 alt="Netrivium Technologies"
                                 sx={{
-                                    height: 40,
+                                    height: 56,
                                     width: 'auto',
                                     mb: 1
                                 }}
@@ -56,12 +57,10 @@ const Footer = () => {
                                 Netrivium is a leading services company focused on delivering innovative connectivity solutions, cutting-edge SaaS products, and advanced AI/ML technologies.
                             </Typography>
                             <Stack direction={'row'} spacing={1}>
-                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#1DA1F2" } }}><Twitter /></IconButton>
-                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#cd486b" } }}><Instagram /></IconButton>
-                                <IconButton size="small" sx={{ color: "#94a3b8", '&:hover': { color: "#4267B2" } }}><Facebook /></IconButton>
-                                <IconButton size="small" onClick={() => {
-                                    window.open("https://www.linkedin.com/company/connect-beacon/", '_blank')
-                                }} sx={{ color: "#94a3b8", '&:hover': { color: "#004182" } }}><LinkedIn /></IconButton>
+                                <IconButton size="small" component="a" href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" sx={{ color: "#94a3b8", '&:hover': { color: "#1DA1F2" } }}><Twitter /></IconButton>
+                                <IconButton size="small" component="a" href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" sx={{ color: "#94a3b8", '&:hover': { color: "#cd486b" } }}><Instagram /></IconButton>
+                                <IconButton size="small" component="a" href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" sx={{ color: "#94a3b8", '&:hover': { color: "#4267B2" } }}><Facebook /></IconButton>
+                                <IconButton size="small" component="a" href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" sx={{ color: "#94a3b8", '&:hover': { color: "#0A66C2" } }}><LinkedIn /></IconButton>
                             </Stack>
                         </Stack>
                     </Grid2 >
@@ -73,7 +72,8 @@ const Footer = () => {
                             </Typography>
                             <Link to="home" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Home</Link>
                             <Link to="about" smooth={true} duration={500} offset={-80} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>About</Link>
-                            <Link to="services" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Services</Link>
+                            <Link to="ai-use-cases" smooth={true} duration={500} offset={-80} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Services</Link>
+                            <RouterLink to="/blogs" style={{ cursor: 'pointer', color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Blog</RouterLink>
                         </Stack>
                     </Grid2 >
 
@@ -82,8 +82,8 @@ const Footer = () => {
                             <Typography variant="h6" color="white" fontWeight={700}>
                                 Legal
                             </Typography>
-                            <Link to="terms" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Terms</Link>
-                            <Link to="privacy" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Privacy</Link>
+                            <RouterLink to="/terms" style={{ cursor: 'pointer', color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Terms</RouterLink>
+                            <RouterLink to="/privacy" style={{ cursor: 'pointer', color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Privacy</RouterLink>
                             <Link to="contact" smooth={true} duration={500} offset={-80} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Contact</Link>
                         </Stack>
                     </Grid2 >
@@ -94,16 +94,20 @@ const Footer = () => {
                                 Get In Touch
                             </Typography>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <PinDrop sx={{ color: '#6366f1' }} />
-                                <Typography>Hitech City, Hyderabad, India</Typography>
+                                <PinDrop sx={{ color: '#00B7E3' }} />
+                                <Typography>{COMPANY_ADDRESS}</Typography>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <SupportAgentRounded sx={{ color: '#6366f1' }} />
-                                <Typography>+91-40-49983275</Typography>
+                                <SupportAgentRounded sx={{ color: '#00B7E3' }} />
+                                <Typography>{COMPANY_PHONE}</Typography>
                             </Stack>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>
-                                <EmailRounded sx={{ color: '#6366f1' }} />
-                                <Typography>{SUPPORT_EMAIL_ADDRESS}</Typography>
+                                <EmailRounded sx={{ color: '#00B7E3' }} />
+                                <Typography component="a" href={`mailto:${SUPPORT_EMAIL_ADDRESS}`} sx={{ color: 'inherit', textDecoration: 'none' }}>{SUPPORT_EMAIL_ADDRESS}</Typography>
+                            </Stack>
+                            <Stack direction={'row'} alignItems={'center'} gap={2}>
+                                <LanguageRounded sx={{ color: '#00B7E3' }} />
+                                <Typography component="a" href={SITE_URL} target="_blank" rel="noopener noreferrer" sx={{ color: 'inherit', textDecoration: 'none' }}>www.netrivium.com</Typography>
                             </Stack>
                         </Stack>
                     </Grid2 >

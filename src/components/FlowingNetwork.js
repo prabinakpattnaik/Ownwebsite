@@ -38,7 +38,7 @@ const FlowingNetwork = () => {
         vx: (Math.random() - 0.5) * 1.5,
         vy: (Math.random() - 0.5) * 1.5,
         r: Math.random() * 1.5 + 0.5,
-        hue: Math.random() * 60 + 240, // Blue to purple range
+        hue: Math.random() * 40 + 190, // Cyan to blue range
       });
     }
 
@@ -52,8 +52,8 @@ const FlowingNetwork = () => {
 
       // Draw connections between nearby nodes
       ctx.strokeStyle = theme.palette.mode === 'dark'
-        ? 'rgba(139, 92, 246, 0.15)'
-        : 'rgba(99, 102, 241, 0.1)';
+        ? 'rgba(53, 217, 255, 0.15)'
+        : 'rgba(10, 91, 211, 0.1)';
       ctx.lineWidth = 1;
 
       for (let i = 0; i < nodes.length; i++) {
@@ -65,8 +65,8 @@ const FlowingNetwork = () => {
           if (distance < 120) {
             const opacity = (1 - distance / 120) * 0.5;
             ctx.strokeStyle = theme.palette.mode === 'dark'
-              ? `rgba(139, 92, 246, ${opacity})`
-              : `rgba(99, 102, 241, ${opacity})`;
+              ? `rgba(53, 217, 255, ${opacity})`
+              : `rgba(10, 91, 211, ${opacity})`;
             
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -90,9 +90,9 @@ const FlowingNetwork = () => {
         );
         
         gradient.addColorStop(0, theme.palette.mode === 'dark'
-          ? 'rgba(167, 139, 250, 0.8)'
-          : 'rgba(99, 102, 241, 0.7)');
-        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+          ? 'rgba(111, 234, 255, 0.8)'
+          : 'rgba(10, 91, 211, 0.7)');
+        gradient.addColorStop(1, 'rgba(10, 91, 211, 0)');
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -161,8 +161,8 @@ const FlowingNetwork = () => {
           height: 'auto',
           borderRadius: '20px',
           boxShadow: theme.palette.mode === 'dark'
-            ? '0 20px 60px rgba(99, 102, 241, 0.3)'
-            : '0 20px 60px rgba(99, 102, 241, 0.2)',
+            ? '0 20px 60px rgba(10, 91, 211, 0.3)'
+            : '0 20px 60px rgba(10, 91, 211, 0.2)',
         }}
       />
       
@@ -178,12 +178,12 @@ const FlowingNetwork = () => {
       >
         <Box
           component="img"
-          src="/logo-icon.svg"
+          src="/brand/icon.svg"
           alt="Netrivium"
           sx={{
-            width: { xs: 120, md: 160 },
+            width: { xs: 210, md: 320 },
             height: 'auto',
-            filter: 'drop-shadow(0 10px 40px rgba(99, 102, 241, 0.5))',
+            filter: 'drop-shadow(0 10px 40px rgba(53, 217, 255, 0.5))',
             animation: 'pulse 3s ease-in-out infinite',
             '@keyframes pulse': {
               '0%, 100%': {
