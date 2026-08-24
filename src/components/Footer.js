@@ -45,7 +45,7 @@ const Footer = () => {
                         <Stack direction={'column'} gap={3}>
                             <Box
                                 component="img"
-                                src="/brand/logo-horizontal-white.svg"
+                                src="/netrivium-lockup-dark.png"
                                 alt="Netrivium Technologies"
                                 sx={{
                                     height: 56,

@@ -178,7 +178,7 @@ const FlowingNetwork = () => {
       >
         <Box
           component="img"
-          src="/brand/icon.svg"
+          src="/assets/netrivium-hero-mark.png"
           alt="Netrivium"
           sx={{
             width: { xs: 210, md: 320 },

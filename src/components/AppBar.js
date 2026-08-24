@@ -103,10 +103,10 @@ export default function AppAppBar() {
             >
               <Box
                 component="img"
-                src={logoOnDarkGround ? '/brand/logo-horizontal-small-white.svg' : '/brand/logo-horizontal-small.svg'}
+                src={logoOnDarkGround ? '/netrivium-lockup-dark.png' : '/netrivium-lockup-light.png'}
                 alt="Netrivium Technologies"
                 sx={{
-                  height: 48,
+                  height: 64,
                   width: 'auto',
                   transition: 'transform 0.2s ease',
                   '&:hover': {
