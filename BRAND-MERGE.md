@@ -1,117 +1,100 @@
-# Brand merge — Netrivium identity pack
+# Brand assets — Netrivium Technologies
 
-Merged on 2026-08-24. Source of truth for the identity system:
-`D:\personal\Own-Product-Code\emergent\mecon\netrivium-brand\` (see its `README.md`).
+Updated 2026-08-24.
 
-This folder is **not under version control** (no `.git`), so every overwritten file
-was copied to `brand-backup/` first. To undo any single change, copy the file back —
-names use `__` where a subfolder was involved (`assets__netrivium-hero-mark.png`
-came from `public/assets/netrivium-hero-mark.png`).
+**Every logo on this site is the company's own approved artwork.** Nothing is redrawn.
+The assets below are crops, trims and rescales of the master files only.
 
-Once you're happy, `brand-backup/` can be deleted.
+## Masters
 
----
-
-## Code changed (4 files)
-
-| File | Change |
+| Master | Used for |
 | --- | --- |
-| `src/components/AppBar.js` | Header logo now SVG; added a scroll-aware reversal (see below) |
-| `src/components/Footer.js` | `netrivium-lockup-dark.png` → `/brand/logo-horizontal-white.svg` |
-| `src/components/FlowingNetwork.js` | `assets/netrivium-hero-mark.png` → `/brand/icon.svg` |
-| `public/index.html` | Real icon set: `.ico` + SVG + PNG apple-touch; JSON-LD logo → PNG |
-| `public/manifest.json` | PWA icons switched from SVG to PNG at 192/512 |
+| `netrivium-lockup-v3-transparent.png` (2031×558) | the light-background lockup and every icon |
+| `netrivium-lockup-dark.png` (1400×329) | the reversed lockup — white "Netrivium" + cyan "Technologies" |
 
-### The scroll-aware header logo
+The v3 master is the only clean cutout available: 80.6 % fully transparent, real opaque
+content, antialiased edges. Two other files in the pack are **not usable**:
+
+- `netrivium-hero-mark-transparent.png` — has **0 % fully-opaque pixels**. The
+  background was made semi-transparent rather than removed, so the whole image is
+  translucent and renders as a washed-out dark block.
+- `netrivium-mark-dotsreduced.png` — failed background removal; black blob artifacts
+  scattered across the artwork.
+
+The hero mark is therefore **cropped out of the v3 lockup** (x 40–760), which gives a
+clean transparent mark of the identical artwork.
+
+## Files in `public/`
+
+| File | Size | Source |
+| --- | --- | --- |
+| `netrivium-lockup-light.png` | 1600×370 | v3, trimmed |
+| `netrivium-lockup-dark.png` | 1600×369 | reversed master, trimmed |
+| `assets/netrivium-hero-mark.png` | 1024×663 | mark cropped from v3 |
+| `favicon.ico` | 16→256 in one file | mark from v3 |
+| `apple-touch-icon.png` | 180×180 | mark from v3 — iOS ignores SVG apple-touch icons |
+| `logo192.png`, `logo512.png` | PWA icons | mark from v3 |
+| `favicon-16/32/48/64/128/256.png` | icon set | mark from v3 |
+| `og-image.png` | 1200×630 | reversed lockup on brand navy |
+| `favicon.svg`, `logo192.svg`, `logo512.svg` | — | the company's own originals, unchanged |
+
+## Where each logo is used
+
+| Component | Asset |
+| --- | --- |
+| `AppBar.js` | `netrivium-lockup-light.png` / `netrivium-lockup-dark.png`, 64 px tall |
+| `Footer.js` | `netrivium-lockup-dark.png`, 56 px tall |
+| `FlowingNetwork.js` | `assets/netrivium-hero-mark.png` |
+
+### Header logo switching
 
 The header is `position: fixed` and translucent. At the top of the home page it sits
-over the blue hero; everywhere else it sits over the near-white page (`#F4F8FC`). A
-single fixed logo colour is wrong in one of those two places, so:
+over the blue hero; everywhere else over the near-white page. One fixed colour is wrong
+in one of those places, so it picks between the two approved variants:
 
 ```js
 const scrolledPastHero = useScrollTrigger({ disableHysteresis: true, threshold: 60 });
 const logoOnDarkGround = mode === 'dark' || (isHomePage && !scrolledPastHero);
 ```
 
-| State | Logo |
+| State | Variant |
 | --- | --- |
-| Home, at top (blue hero behind bar) | white |
-| Home, scrolled | navy |
-| Any other page | navy |
-| Dark mode, anywhere | white |
+| Home, at top (blue hero behind the bar) | reversed (`-dark`) |
+| Home, scrolled | standard (`-light`) |
+| Any other page | standard (`-light`) |
+| Dark mode, anywhere | reversed (`-dark`) |
 
-`useScrollTrigger` comes from `@mui/material` — no new dependency.
+`useScrollTrigger` ships with `@mui/material` — no new dependency.
 
----
+### Header height: 64 px, not 48
 
-## Assets replaced in place (existing filenames kept)
+Measured from the lockup's own proportions (total content 447 px tall, wordmark band
+93 px, tagline band 32 px):
 
-Kept the original names so nothing breaks even if the component edits are reverted.
-
-| `public/` path | Was | Now |
+| Header height | Wordmark caps | Tagline |
 | --- | --- | --- |
-| `netrivium-lockup-light.png` | 1400×329, 282 KB, 3D render | 1600×279, 108 KB |
-| `netrivium-lockup-dark.png` | 1400×329, 286 KB | 1600×279, 37 KB |
-| `assets/netrivium-hero-mark.png` | 1524×1018, **2001 KB** | 1024×625, **273 KB** |
-| `favicon.svg` | old mark | simplified mark, holds at 16 px |
-| `logo192.svg`, `logo512.svg` | old mark | square padded mark |
-| `og-image.png` | 1200×630 | 1200×630, rebuilt on brand navy with the tagline |
+| 48 px | ~10 px | ~3.4 px — illegible |
+| **64 px** | **~13 px** | ~4.6 px — reads as a decorative rule |
+| 80 px | ~17 px | ~5.8 px |
 
-These three PNG lockups are **no longer referenced** by any component (they were the
-old `img src` targets). They're left in place as a fallback — safe to delete once
-you're confident in the SVG versions.
+The mark is large relative to the text in this lockup, so **the tagline cannot be
+legible at any reasonable header size**. 64 px makes "Netrivium Technologies" readable
+while keeping the header compact. If the tagline needs to read in the header, the
+lockup itself has to be re-proportioned (larger text relative to the mark) — that's a
+design decision, not something to fix with CSS.
 
-## Assets added
+## Known limitation
 
-| `public/` path | Why |
-| --- | --- |
-| `brand/*.svg` (12 files, ~140 KB) | Vector lockups for site use — see table below |
-| `favicon.ico` | 16–256 px in one file; legacy browsers and Windows pinned sites |
-| `apple-touch-icon.png` (180) | **iOS ignores SVG `apple-touch-icon`** — there was previously no iPhone home-screen icon |
-| `logo192.png`, `logo512.png` | PWA install icons; Android prefers PNG. `logo512.png` is also the JSON-LD `logo` |
-| `favicon-32.png` | Classic PNG favicon fallback |
+The v3 cutout has slight alpha fringing around the outer glow — faint speckles at the
+edge of the halo, visible if you zoom in on a light background. It comes from the
+master's background removal and is present in the source artwork. Re-cutting from the
+original layered file (or the original render without a background) would remove it.
 
-### `public/brand/` contents
+## Not part of the brand work
 
-```
-logo-horizontal.svg              logo-horizontal-white.svg
-logo-horizontal-small.svg        logo-horizontal-small-white.svg   ← header (simplified mark)
-logo-horizontal-tagline.svg      logo-horizontal-tagline-white.svg
-logo-horizontal-ondark.svg
-logo-stacked.svg                 logo-stacked-white.svg
-icon.svg                         icon-white.svg                    ← hero mark
-icon-compact.svg
-```
-
-Pick `-small` under 320 px wide and `icon-compact` under 56 px — below those sizes the
-full trace pattern muddies. The `-small` file has the **same width and height** as
-`logo-horizontal.svg`, so swapping never shifts layout.
-
----
-
-## Net effect
-
-Header + footer + hero images: **~570 KB of PNG → ~20 KB of SVG**, and they're now
-resolution-independent. The hero mark alone dropped 1.7 MB.
-
-## Not changed, on purpose
-
-- **`#00B7E3`** is used in 15 places in `src/`. The brand cyan is `#35D9FF`. The logo
-  doesn't use `#00B7E3`, so nothing looks wrong today, but the two cyans will drift
-  apart over time. Worth reconciling in a separate pass.
-- **Four unreferenced SVGs** in `public/`: `logo-full.svg`, `logo-horizontal.svg`,
-  `logo-horizontal-dark.svg`, `logo-icon.svg`. Nothing imports them. Left alone;
-  delete when you're ready.
-- **No maskable PWA icon.** A `purpose: "maskable"` entry was deliberately left out —
-  Android crops maskable icons to a central 80 % safe zone and expects a full-bleed
-  background, which a transparent 6 % padded icon does not satisfy. Doing it properly
-  means a separate icon with a navy plate and the mark inset to ~60 %.
-- **Pre-existing React warning:** `Highlights` renders a list without a `key` prop.
-  Unrelated to branding; visible in the console.
-
-## Verified
-
-Dev server compiled clean. All three logo images load (`naturalWidth > 0`), no failed
-requests, no new console errors. Logo swap confirmed in all four states: home top,
-home scrolled, other page, dark mode. Header measured at `(0,0,1440,66)` in both
-scroll positions.
+- `#00B7E3` appears 15 times in `src/`; the logo's cyan is `#35D9FF`. Nothing looks
+  wrong today, but the two will drift. Worth reconciling separately.
+- Unreferenced files in `public/`: `logo-full.svg`, `logo-horizontal.svg`,
+  `logo-horizontal-dark.svg`, `logo-icon.svg`. Nothing imports them.
+- `src/components/AnimatedLogo.js` and `SitemarkIcon.js` are imported nowhere.
+- `brand-backup/` is local undo material with no purpose in a deployed repo.
