@@ -10,6 +10,7 @@ import {
   Drawer,
   Box
 } from '@mui/material';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { scroller } from 'react-scroll';
@@ -45,7 +46,13 @@ export default function AppAppBar() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const { mode } = useThemeMode();
-  
+
+  // The bar is fixed and translucent. At the top of the home page it sits over the
+  // blue hero, everywhere else over the near-white page, so the reversed lockup is
+  // only correct in the former case.
+  const scrolledPastHero = useScrollTrigger({ disableHysteresis: true, threshold: 60 });
+  const logoOnDarkGround = mode === 'dark' || (isHomePage && !scrolledPastHero);
+
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -96,10 +103,10 @@ export default function AppAppBar() {
             >
               <Box
                 component="img"
-                src={mode === 'dark' ? '/logo-horizontal-dark.svg' : '/logo-horizontal.svg'}
+                src={logoOnDarkGround ? '/brand/logo-horizontal-small-white.svg' : '/brand/logo-horizontal-small.svg'}
                 alt="Netrivium Technologies"
                 sx={{
-                  height: 45,
+                  height: 48,
                   width: 'auto',
                   transition: 'transform 0.2s ease',
                   '&:hover': {
@@ -121,7 +128,7 @@ export default function AppAppBar() {
                   key={index}
                   variant="text"
                   sx={{
-                    color: '#18181b',
+                    color: 'text.primary',
                     fontSize: '0.9rem',
                     fontWeight: 600,
                     textTransform: 'none',
@@ -155,7 +162,7 @@ export default function AppAppBar() {
                 variant="contained"
                 onClick={() => handleNavClick('book-demo')}
                 sx={{
-                  backgroundColor: '#003366',
+                  backgroundColor: '#0A5BD3',
                   fontSize: '0.85rem',
                   fontWeight: 'bold',
                   px: 2.5,
@@ -163,7 +170,7 @@ export default function AppAppBar() {
                   textTransform: 'none',
                   whiteSpace: 'nowrap',
                   '&:hover': {
-                    backgroundColor: '#002244',
+                    backgroundColor: '#08213D',
                   },
                 }}
               >
