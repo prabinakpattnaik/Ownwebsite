@@ -1,56 +1,98 @@
-# Brand assets — Netrivium Technologies
+# Brand assets — Netrivium
 
-Updated 2026-08-24.
+Updated 2026-08-29.
 
-**Every logo on this site is the company's own approved artwork.** Nothing is redrawn.
-The assets below are crops, trims and rescales of the master files only.
+**Every logo on this site is the company's own approved artwork**, built from one master:
 
-## Masters
+```
+netrivium-logo-transparent.png   2100 × 749
+```
 
-| Master | Used for |
-| --- | --- |
-| `netrivium-lockup-v3-transparent.png` (2031×558) | the light-background lockup and every icon |
-| `netrivium-lockup-dark.png` (1400×329) | the reversed lockup — white "Netrivium" + cyan "Technologies" |
+Crops, trims and rescales only — with a single derived variant, called out below.
 
-The v3 master is the only clean cutout available: 80.6 % fully transparent, real opaque
-content, antialiased edges. Two other files in the pack are **not usable**:
+## What changed in this revision
 
-- `netrivium-hero-mark-transparent.png` — has **0 % fully-opaque pixels**. The
-  background was made semi-transparent rather than removed, so the whole image is
-  translucent and renders as a washed-out dark block.
-- `netrivium-mark-dotsreduced.png` — failed background removal; black blob artifacts
-  scattered across the artwork.
+The logo was replaced with the newer approved lockup:
 
-The hero mark is therefore **cropped out of the v3 lockup** (x 40–760), which gives a
-clean transparent mark of the identical artwork.
+| | Previous | Current |
+| --- | --- | --- |
+| Wordmark | "Netrivium **Technologies**" | "Netri**vium**" — navy + cyan, no "Technologies" |
+| Tagline | Building **the** Connected Future | Building **a** Connected Future |
+| Mark | star glints, halo speckle | cleaner, no glints |
+| Wordmark share of height | 21 % | **57 %** |
+
+Because the wordmark is now 57 % of the lockup height instead of 21 %, the header logo
+went back to its original **48 px** (it had been raised to 64 px only to rescue the old
+lockup's tiny text). At 48 px the wordmark band is ~27 px and the tagline ~7 px — both
+legible.
+
+`SITE_TAGLINE` in `src/utils/constants.js` was updated to match the new wording.
+
+## ⚠ Known defect in the master — needs a clean re-export
+
+The supplied file is **not fully transparent**. The editor's transparency checkerboard
+is baked in as real pixels inside the enclosed areas of the mark — the counter of the
+N and the regions enclosed by the orbit:
+
+- **40,780 fully-opaque pixels** in the mark area are flat neutral tones
+- dominated by exactly two values, **`#FFFFFF`** and **`#F8F8F8`**, tiled in a regular grid
+- the outer background *was* cleared correctly; only the enclosed regions were missed
+
+**Where it shows:** subtle on the near-white hero card and the light header (near-white
+on near-white), but clearly visible on any coloured or dark ground — the footer
+(`#0f172a`), the blue hero, and the OG card.
+
+**Automated repair was attempted and rejected.** Matching the two tones and clearing
+connected regions removed 20,104 px but left a moth-eaten edge and ate into the N's
+silver right stem, because the checkerboard has been resampled and is no longer
+pixel-exact. Shipping that would have been worse than the artifact. **The file in use is
+the supplied master, unmodified.**
+
+**The fix:** re-export from the source with a real alpha channel — "Export As → PNG with
+transparency" from the layered file, rather than removing a white background after the
+fact. Antialiased edges would help too; the current file has **0 % partial alpha**
+(hard-edged), which only looks acceptable because everything is downscaled at least 5×.
 
 ## Files in `public/`
 
 | File | Size | Source |
 | --- | --- | --- |
-| `netrivium-lockup-light.png` | 1600×370 | v3, trimmed |
-| `netrivium-lockup-dark.png` | 1600×369 | reversed master, trimmed |
-| `assets/netrivium-hero-mark.png` | 1024×663 | mark cropped from v3 |
-| `favicon.ico` | 16→256 in one file | mark from v3 |
-| `apple-touch-icon.png` | 180×180 | mark from v3 — iOS ignores SVG apple-touch icons |
-| `logo192.png`, `logo512.png` | PWA icons | mark from v3 |
-| `favicon-16/32/48/64/128/256.png` | icon set | mark from v3 |
+| `netrivium-lockup-light.png` | 1600×292 | master, trimmed |
+| `netrivium-lockup-dark.png` | 1600×292 | **derived** — see below |
+| `assets/netrivium-hero-mark.png` | 1024×510 | mark cropped from the master |
+| `favicon.ico` | 16→256 in one file | mark |
+| `apple-touch-icon.png` | 180×180 | mark — iOS ignores SVG apple-touch icons |
+| `logo192.png`, `logo512.png` | PWA icons | mark |
+| `favicon-16/32/48/64/128/256.png` | icon set | mark |
 | `og-image.png` | 1200×630 | reversed lockup on brand navy |
 | `favicon.svg`, `logo192.svg`, `logo512.svg` | — | the company's own originals, unchanged |
+
+### The reversed variant is derived — please confirm
+
+No reversed master was supplied, but the site needs one: "Netri" is navy and would
+vanish on the footer (`#0f172a`) and against the blue hero. `netrivium-lockup-dark.png`
+is generated by recolouring **only the dark half of the wordmark to white**:
+
+```js
+// pixels right of x=800, luminance < 110  ->  white
+```
+
+The mark, the cyan "vium" and the cyan tagline are untouched. **If the company has a
+real reversed lockup, send it and it will replace this file.**
 
 ## Where each logo is used
 
 | Component | Asset |
 | --- | --- |
-| `AppBar.js` | `netrivium-lockup-light.png` / `netrivium-lockup-dark.png`, 64 px tall |
+| `AppBar.js` | `netrivium-lockup-light.png` / `-dark.png`, 48 px tall |
 | `Footer.js` | `netrivium-lockup-dark.png`, 56 px tall |
 | `FlowingNetwork.js` | `assets/netrivium-hero-mark.png` |
 
 ### Header logo switching
 
-The header is `position: fixed` and translucent. At the top of the home page it sits
-over the blue hero; everywhere else over the near-white page. One fixed colour is wrong
-in one of those places, so it picks between the two approved variants:
+The header is `position: fixed` and translucent. At the top of the home page it sits over
+the blue hero, everywhere else over the near-white page, so one fixed colour is wrong in
+one of those places:
 
 ```js
 const scrolledPastHero = useScrollTrigger({ disableHysteresis: true, threshold: 60 });
@@ -59,42 +101,18 @@ const logoOnDarkGround = mode === 'dark' || (isHomePage && !scrolledPastHero);
 
 | State | Variant |
 | --- | --- |
-| Home, at top (blue hero behind the bar) | reversed (`-dark`) |
-| Home, scrolled | standard (`-light`) |
-| Any other page | standard (`-light`) |
-| Dark mode, anywhere | reversed (`-dark`) |
+| Home, at top (blue hero behind the bar) | reversed |
+| Home, scrolled | standard |
+| Any other page | standard |
+| Dark mode, anywhere | reversed |
 
 `useScrollTrigger` ships with `@mui/material` — no new dependency.
 
-### Header height: 64 px, not 48
-
-Measured from the lockup's own proportions (total content 447 px tall, wordmark band
-93 px, tagline band 32 px):
-
-| Header height | Wordmark caps | Tagline |
-| --- | --- | --- |
-| 48 px | ~10 px | ~3.4 px — illegible |
-| **64 px** | **~13 px** | ~4.6 px — reads as a decorative rule |
-| 80 px | ~17 px | ~5.8 px |
-
-The mark is large relative to the text in this lockup, so **the tagline cannot be
-legible at any reasonable header size**. 64 px makes "Netrivium Technologies" readable
-while keeping the header compact. If the tagline needs to read in the header, the
-lockup itself has to be re-proportioned (larger text relative to the mark) — that's a
-design decision, not something to fix with CSS.
-
-## Known limitation
-
-The v3 cutout has slight alpha fringing around the outer glow — faint speckles at the
-edge of the halo, visible if you zoom in on a light background. It comes from the
-master's background removal and is present in the source artwork. Re-cutting from the
-original layered file (or the original render without a background) would remove it.
-
 ## Not part of the brand work
 
-- `#00B7E3` appears 15 times in `src/`; the logo's cyan is `#35D9FF`. Nothing looks
-  wrong today, but the two will drift. Worth reconciling separately.
+- `#00B7E3` appears 15 times in `src/`; the logo's cyan is close but not identical.
+  Worth reconciling separately.
 - Unreferenced files in `public/`: `logo-full.svg`, `logo-horizontal.svg`,
-  `logo-horizontal-dark.svg`, `logo-icon.svg`. Nothing imports them.
+  `logo-horizontal-dark.svg`, `logo-icon.svg`.
 - `src/components/AnimatedLogo.js` and `SitemarkIcon.js` are imported nowhere.
 - `brand-backup/` is local undo material with no purpose in a deployed repo.

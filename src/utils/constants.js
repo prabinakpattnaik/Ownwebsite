@@ -3,7 +3,7 @@
 
 export const SITE_URL = "https://www.netrivium.com";
 export const SITE_NAME = "Netrivium Technologies";
-export const SITE_TAGLINE = "Building the Connected Future";
+export const SITE_TAGLINE = "Building a Connected Future";
 export const SITE_DESCRIPTION =
   "Netrivium Technologies — empowering businesses with intelligent connectivity, scalable networking solutions, and innovative SaaS & AI/ML development.";
 export const OG_IMAGE = `${SITE_URL}/og-image.png`;
