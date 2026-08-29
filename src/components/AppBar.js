@@ -103,7 +103,7 @@ export default function AppAppBar() {
             >
               <Box
                 component="img"
-                src={logoOnDarkGround ? '/netrivium-lockup-header-dark.png' : '/netrivium-lockup-light.png'}
+                src={logoOnDarkGround ? '/netrivium-lockup-dark.png' : '/netrivium-lockup-light.png'}
                 alt="Netrivium Technologies"
                 sx={{
                   height: 48,

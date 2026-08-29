@@ -2,91 +2,78 @@
 
 Updated 2026-08-29.
 
-**Every logo on this site is the company's own approved artwork**, built from one master:
+## Two masters are in play
 
-```
-netrivium-logo-transparent.png   2100 × 749
-```
-
-Crops, trims and rescales only — with a single derived variant, called out below.
-
-## What changed in this revision
-
-The logo was replaced with the newer approved lockup:
-
-| | Previous | Current |
+| Master | Quality | Feeds |
 | --- | --- | --- |
-| Wordmark | "Netrivium **Technologies**" | "Netri**vium**" — navy + cyan, no "Technologies" |
-| Tagline | Building **the** Connected Future | Building **a** Connected Future |
-| Mark | star glints, halo speckle | cleaner, no glints |
-| Wordmark share of height | 21 % | **57 %** |
+| **`netrivium-logo-clean`** — 1919×820, supplied 2026-08-29 23:16 | ✅ clean | header + footer lockups |
+| `netrivium-logo-transparent` — 2100×749, supplied earlier | ⚠ defective | hero mark, favicons, OG card |
 
-Because the wordmark is now 57 % of the lockup height instead of 21 %, the header logo
-went back to its original **48 px** (it had been raised to 64 px only to rescue the old
-lockup's tiny text). At 48 px the wordmark band is ~27 px and the tagline ~7 px — both
-legible.
+Everything is crops, trims and rescales of a master. The one exception — the reversed
+lockup — is called out below.
 
-`SITE_TAGLINE` in `src/utils/constants.js` was updated to match the new wording.
+### The newer master is good
 
-## ⚠ Known defect in the master — needs a clean re-export
+Verified over magenta, blue and navy: no baked background, nothing showing through.
+**70.5 %** of its non-transparent pixels sit at alpha 250–255, with 15.6 % at low alpha
+forming a properly feathered glow. This is a real alpha channel, not a background
+deletion.
 
-The supplied file is **not fully transparent**. The editor's transparency checkerboard
-is baked in as real pixels inside the enclosed areas of the mark — the counter of the
-N and the regions enclosed by the orbit:
+One gotcha: the file is **~40 % transparent padding** (content is 1795×333 inside
+1919×820). Used untrimmed at `height: 48` the logo renders about half size. Every
+derived file here is trimmed to content first.
 
-- **40,780 fully-opaque pixels** in the mark area are flat neutral tones
-- dominated by exactly two values, **`#FFFFFF`** and **`#F8F8F8`**, tiled in a regular grid
-- the outer background *was* cleared correctly; only the enclosed regions were missed
+### The older master is still defective — replace where it's used
 
-**Where it shows:** subtle on the near-white hero card and the light header (near-white
-on near-white), but clearly visible on any coloured or dark ground — the footer
-(`#0f172a`), the blue hero, and the OG card.
+The editor's transparency checkerboard is baked in as real pixels inside the enclosed
+areas of the mark:
 
-**Automated repair was attempted and rejected.** Matching the two tones and clearing
-connected regions removed 20,104 px but left a moth-eaten edge and ate into the N's
-silver right stem, because the checkerboard has been resampled and is no longer
-pixel-exact. Shipping that would have been worse than the artifact. **The file in use is
-the supplied master, unmodified.**
+- **40,780 fully-opaque pixels** of flat neutral tone
+- exactly two values, **`#FFFFFF`** and **`#F8F8F8`**, tiled in a regular grid
+- the outer background was cleared; the enclosed regions were missed
 
-**The fix:** re-export from the source with a real alpha channel — "Export As → PNG with
-transparency" from the layered file, rather than removing a white background after the
-fact. Antialiased edges would help too; the current file has **0 % partial alpha**
-(hard-edged), which only looks acceptable because everything is downscaled at least 5×.
+Subtle on near-white, obvious on colour. Automated repair was attempted and **rejected**
+— it left a moth-eaten edge and ate into the N's silver stem, because the checkerboard
+has been resampled and is no longer pixel-exact.
+
+**Still fed by this defective master:** `assets/netrivium-hero-mark.png`, the favicon /
+PWA icon set, and `og-image.png`. Re-cutting them from the newer master is the outstanding
+task.
 
 ## Files in `public/`
 
 | File | Size | Source |
 | --- | --- | --- |
-| `netrivium-lockup-light.png` | 1600×292 | master, trimmed |
-| `netrivium-lockup-dark.png` | 1600×292 | **derived** — see below |
-| `assets/netrivium-hero-mark.png` | 1024×510 | mark cropped from the master |
-| `favicon.ico` | 16→256 in one file | mark |
-| `apple-touch-icon.png` | 180×180 | mark — iOS ignores SVG apple-touch icons |
-| `logo192.png`, `logo512.png` | PWA icons | mark |
-| `favicon-16/32/48/64/128/256.png` | icon set | mark |
-| `og-image.png` | 1200×630 | reversed lockup on brand navy |
+| `netrivium-lockup-light.png` | 1600×297 | **new master**, trimmed |
+| `netrivium-lockup-dark.png` | 1600×297 | **new master**, trimmed + reversed (derived) |
+| `assets/netrivium-hero-mark.png` | 1024×510 | ⚠ old master |
+| `favicon.ico`, `favicon-*.png` | 16→256 | ⚠ old master |
+| `apple-touch-icon.png` | 180×180 | ⚠ old master — iOS ignores SVG apple-touch icons |
+| `logo192.png`, `logo512.png` | PWA icons | ⚠ old master |
+| `og-image.png` | 1200×630 | ⚠ old master |
 | `favicon.svg`, `logo192.svg`, `logo512.svg` | — | the company's own originals, unchanged |
 
-### The reversed variant is derived — please confirm
+### The reversed lockup is derived — please confirm
 
-No reversed master was supplied, but the site needs one: "Netri" is navy and would
+No reversed master has been supplied, but the site needs one: "Netri" is navy and would
 vanish on the footer (`#0f172a`) and against the blue hero. `netrivium-lockup-dark.png`
 is generated by recolouring **only the dark half of the wordmark to white**:
 
 ```js
-// pixels right of x=800, luminance < 110  ->  white
+// pixels right of x=740 (past the mark), luminance < 110  ->  white
 ```
 
-The mark, the cyan "vium" and the cyan tagline are untouched. **If the company has a
-real reversed lockup, send it and it will replace this file.**
+The mark, the cyan "vium" and the cyan tagline are untouched. One file serves both the
+header's dark state and the footer. **If a real reversed lockup exists, send it and it
+replaces this file.**
 
 ## Where each logo is used
 
-| Component | Asset |
-| --- | --- |
-| `AppBar.js` | `netrivium-lockup-light.png` / `-dark.png`, 48 px tall |
-| `Footer.js` | `netrivium-lockup-dark.png`, 56 px tall |
-| `FlowingNetwork.js` | `assets/netrivium-hero-mark.png` |
+| Component | Asset | Height |
+| --- | --- | --- |
+| `AppBar.js` | `netrivium-lockup-light.png` / `-dark.png` | 48 px |
+| `Footer.js` | `netrivium-lockup-dark.png` | 56 px |
+| `FlowingNetwork.js` | `assets/netrivium-hero-mark.png` | 210–320 px wide |
 
 ### Header logo switching
 
@@ -108,10 +95,15 @@ const logoOnDarkGround = mode === 'dark' || (isHomePage && !scrolledPastHero);
 
 `useScrollTrigger` ships with `@mui/material` — no new dependency.
 
+### Sizing
+
+The current lockup's wordmark is 57 % of the logo height (the previous one was 21 %), so
+48 px in the header is legible — wordmark ~27 px, tagline ~7 px. An earlier 64 px bump
+existed only to rescue the old lockup and has been reverted.
+
 ## Not part of the brand work
 
 - `#00B7E3` appears 15 times in `src/`; the logo's cyan is close but not identical.
-  Worth reconciling separately.
 - Unreferenced files in `public/`: `logo-full.svg`, `logo-horizontal.svg`,
   `logo-horizontal-dark.svg`, `logo-icon.svg`.
 - `src/components/AnimatedLogo.js` and `SitemarkIcon.js` are imported nowhere.
