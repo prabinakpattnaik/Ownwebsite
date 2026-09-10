@@ -23,7 +23,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   flexShrink: 0,
-  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
+  borderRadius: 12,
   backdropFilter: 'blur(24px)',
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.divider,
@@ -129,12 +129,9 @@ export default function AppAppBar() {
                   variant="text"
                   sx={{
                     color: 'text.primary',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    textTransform: 'none',
                     px: 1.5,
                     whiteSpace: 'nowrap',
-                    minWidth: 'auto'
+                    minWidth: 'auto',
                   }}
                   size="small"
                   onClick={() => {
@@ -160,19 +157,10 @@ export default function AppAppBar() {
               <ThemeToggle />
               <Button
                 variant="contained"
+                color="primary"
+                size="small"
                 onClick={() => handleNavClick('book-demo')}
-                sx={{
-                  backgroundColor: '#0A5BD3',
-                  fontSize: '0.85rem',
-                  fontWeight: 'bold',
-                  px: 2.5,
-                  py: 0.75,
-                  textTransform: 'none',
-                  whiteSpace: 'nowrap',
-                  '&:hover': {
-                    backgroundColor: '#08213D',
-                  },
-                }}
+                sx={{ whiteSpace: 'nowrap' }}
               >
                 Book a Demo
               </Button>

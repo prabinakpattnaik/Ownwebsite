@@ -3,7 +3,6 @@ import React from 'react';
 import { Box } from '@mui/material';
 import PageSEO from '../components/PageSEO';
 import EnhancedHero from '../components/EnhancedHero';
-import Highlights from '../components/Highlights';
 import About from '../components/About';
 import AIUseCases from '../components/AIUseCases';
 import DevExpertise from '../components/DevExpertise';
@@ -23,12 +22,6 @@ function HomePage() {
       <PageSEO />
       <div id="home">
         <EnhancedHero />
-      </div>
-
-      <div id="highlights">
-        <RevealOnScroll delay={200}>
-          <Highlights />
-        </RevealOnScroll>
       </div>
 
       <div id="about">

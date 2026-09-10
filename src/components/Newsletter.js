@@ -84,18 +84,18 @@ const Newsletter = () => {
 
           {/* Heading */}
           <Typography
-            variant="h3"
+            component="h2"
+            variant="h2"
             sx={{
               color: 'white',
-              fontWeight: 700,
-              fontSize: { xs: '2rem', md: '2.5rem' },
             }}
           >
             Stay Updated
           </Typography>
 
           <Typography
-            variant="h6"
+            component="p"
+            variant="body1"
             sx={{
               color: 'rgba(255, 255, 255, 0.9)',
               maxWidth: 600,
@@ -129,11 +129,12 @@ const Newsletter = () => {
           >
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
-              spacing={2}
+              spacing={1}
+              alignItems="stretch"
               sx={{
                 backgroundColor: 'rgba(255, 255, 255, 0.15)',
                 backdropFilter: 'blur(10px)',
-                borderRadius: 2,
+                borderRadius: '12px',
                 p: 1,
               }}
             >
@@ -145,16 +146,21 @@ const Newsletter = () => {
                 type="email"
                 required
                 variant="outlined"
+                inputProps={{ 'aria-label': 'Email address' }}
                 sx={{
                   '& .MuiOutlinedInput-root': {
+                    height: 48,
+                    minHeight: 48,
                     backgroundColor: 'white',
-                    borderRadius: 1.5,
+                    borderRadius: '8px',
                     '& fieldset': {
                       border: 'none',
                     },
                   },
                   '& input': {
-                    py: 1.5,
+                    py: 0,
+                    height: 48,
+                    boxSizing: 'border-box',
                   },
                 }}
                 data-testid="newsletter-email-input"
@@ -162,20 +168,14 @@ const Newsletter = () => {
               <Button
                 type="submit"
                 variant="contained"
+                color="inherit"
+                size="large"
                 endIcon={<Send />}
                 sx={{
-                  px: 4,
-                  py: 1.5,
-                  backgroundColor: 'white',
-                  color: '#0A5BD3',
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  fontSize: '1rem',
-                  borderRadius: 1.5,
+                  height: 48,
+                  minHeight: 48,
                   whiteSpace: 'nowrap',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  },
+                  flexShrink: 0,
                 }}
                 data-testid="newsletter-subscribe-button"
               >

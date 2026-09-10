@@ -133,20 +133,18 @@ const ContactForm = () => {
         {/* Header */}
         <Box textAlign="center" mb={8}>
           <Typography
+            component="p"
             variant="overline"
             sx={{
               color: theme.palette.primary.main,
-              fontWeight: 700,
-              fontSize: '0.9rem',
-              letterSpacing: 2,
             }}
           >
-            GET IN TOUCH
+            Get in touch
           </Typography>
           <Typography
-            variant="h3"
+            component="h2"
+            variant="h2"
             sx={{
-              fontWeight: 700,
               mt: 1,
               mb: 2,
               background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
@@ -157,7 +155,8 @@ const ContactForm = () => {
             Let's Start a Conversation
           </Typography>
           <Typography
-            variant="h6"
+            component="p"
+            variant="body1"
             color="text.secondary"
             sx={{ maxWidth: 700, mx: 'auto' }}
           >
@@ -174,11 +173,11 @@ const ContactForm = () => {
                   key={index}
                   sx={{
                     p: 3,
-                    borderRadius: 2,
-                    background: theme.palette.background.paper,
+                    border: '1px solid',
+                    borderColor: 'divider',
                     boxShadow: theme.palette.mode === 'dark'
-                      ? '0 2px 10px rgba(0,0,0,0.3)'
-                      : '0 2px 10px rgba(0,0,0,0.05)',
+                      ? '0 1px 3px rgb(0 0 0 / 0.3)'
+                      : '0 1px 3px rgb(0 0 0 / 0.08)',
                     transition: 'transform 0.2s ease',
                     '&:hover': {
                       transform: 'translateX(8px)',
@@ -193,7 +192,7 @@ const ContactForm = () => {
                       sx={{
                         width: 48,
                         height: 48,
-                        borderRadius: 2,
+                        borderRadius: '8px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -218,18 +217,29 @@ const ContactForm = () => {
               {/* Map Placeholder */}
               <Paper
                 sx={{
-                  height: 200,
-                  borderRadius: 2,
-                  background: theme.palette.mode === 'dark'
-                    ? 'linear-gradient(135deg, #1e293b 0%, #312e81 100%)'
-                    : 'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  height: 220,
+                  overflow: 'hidden',
+                  border: '1px solid',
+                  borderColor: 'divider',
                 }}
               >
-                <LocationOn sx={{ fontSize: 60, opacity: 0.3 }} />
+                <iframe
+                  title="Netrivium office location in Hitech City, Hyderabad"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=78.355%2C17.430%2C78.420%2C17.470&layer=mapnik&marker=17.4483%2C78.3915"
+                  style={{ border: 0, width: '100%', height: '100%', display: 'block' }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </Paper>
+              <Typography variant="caption" color="text.secondary">
+                <a
+                  href="https://www.openstreetmap.org/?mlat=17.4483&mlon=78.3915#map=14/17.4483/78.3915"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View larger map of Hitech City, Hyderabad
+                </a>
+              </Typography>
             </Stack>
           </Grid>
 
@@ -238,11 +248,11 @@ const ContactForm = () => {
             <Paper
               sx={{
                 p: 4,
-                borderRadius: 3,
-                background: theme.palette.background.paper,
+                border: '1px solid',
+                borderColor: 'divider',
                 boxShadow: theme.palette.mode === 'dark'
-                  ? '0 4px 20px rgba(0,0,0,0.3)'
-                  : '0 4px 20px rgba(0,0,0,0.08)',
+                  ? '0 1px 3px rgb(0 0 0 / 0.3)'
+                  : '0 1px 3px rgb(0 0 0 / 0.08)',
               }}
             >
               {submitted && (
@@ -318,19 +328,10 @@ const ContactForm = () => {
                     <Button
                       type="submit"
                       variant="contained"
+                      color="primary"
                       size="large"
                       endIcon={<Send />}
                       fullWidth
-                      sx={{
-                        py: 1.5,
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        textTransform: 'none',
-                        background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
-                        '&:hover': {
-                          background: 'linear-gradient(135deg, #08213D 0%, #0A5BD3 100%)',
-                        },
-                      }}
                       data-testid="contact-submit-button"
                     >
                       Send Message

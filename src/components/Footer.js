@@ -67,7 +67,7 @@ const Footer = () => {
 
                     <Grid2 size={{ xs: 12, sm: 6, md: 2 }} item>
                         <Stack direction={'column'} gap={2.5}>
-                            <Typography variant="h6" color="white" fontWeight={700}>
+                            <Typography component="h2" variant="h3" color="white">
                                 Explore
                             </Typography>
                             <Link to="home" smooth={true} duration={500} style={{ cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Home</Link>
@@ -79,7 +79,7 @@ const Footer = () => {
 
                     <Grid2 size={{ xs: 12, sm: 6, md: 2 }} item>
                         <Stack direction={'column'} gap={2.5}>
-                            <Typography variant="h6" color="white" fontWeight={700}>
+                            <Typography component="h2" variant="h3" color="white">
                                 Legal
                             </Typography>
                             <RouterLink to="/terms" style={{ cursor: 'pointer', color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'inherit'}>Terms</RouterLink>
@@ -90,7 +90,7 @@ const Footer = () => {
 
                     <Grid2 size={{ xs: 12, sm: 6, md: 3 }} item>
                         <Stack direction={'column'} gap={2.5}>
-                            <Typography variant="h6" color="white" fontWeight={700}>
+                            <Typography component="h2" variant="h3" color="white">
                                 Get In Touch
                             </Typography>
                             <Stack direction={'row'} alignItems={'center'} gap={2}>

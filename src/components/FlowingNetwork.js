@@ -159,7 +159,7 @@ const FlowingNetwork = () => {
           width: '100%',
           maxWidth: '600px',
           height: 'auto',
-          borderRadius: '20px',
+          borderRadius: '12px',
           boxShadow: theme.palette.mode === 'dark'
             ? '0 20px 60px rgba(10, 91, 211, 0.3)'
             : '0 20px 60px rgba(10, 91, 211, 0.2)',

@@ -100,45 +100,40 @@ const EnhancedHero = () => {
                 mb: 3,
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
                 color: 'white',
-                fontWeight: 600,
                 backdropFilter: 'blur(10px)',
               }}
               data-testid="trust-badge"
             />
 
-            {/* Heading */}
             <Typography
-              variant="h2"
+              component="h1"
+              variant="h1"
               sx={{
-                fontWeight: 800,
                 color: 'white',
                 mb: 2,
-                fontSize: { xs: '2.5rem', md: '3.5rem' },
-                lineHeight: 1.2,
               }}
               data-testid="hero-title"
             >
-              NETRIVIUM TECHNOLOGIES
+              Netrivium Technologies
             </Typography>
 
             <Typography
+              component="p"
               variant="h5"
               sx={{
                 color: 'rgba(255, 255, 255, 0.95)',
                 mb: 2,
-                fontWeight: 500,
-                fontSize: { xs: '1.25rem', md: '1.5rem' },
               }}
             >
               Empowering Businesses with Intelligent Connectivity
             </Typography>
 
             <Typography
+              component="p"
+              variant="body1"
               sx={{
                 color: 'rgba(255, 255, 255, 0.85)',
                 mb: 4,
-                fontSize: '1.1rem',
-                lineHeight: 1.7,
               }}
             >
               Scalable, secure, and innovative networking solutions—built for the modern digital landscape.
@@ -165,24 +160,8 @@ const EnhancedHero = () => {
               <Link to="about" smooth={true} duration={500} style={{ textDecoration: 'none' }}>
                 <Button
                   variant="contained"
+                  color="inherit"
                   size="large"
-                  sx={{
-                    backgroundColor: 'white',
-                    color: '#0A5BD3',
-                    fontWeight: 700,
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1rem',
-                    textTransform: 'none',
-                    borderRadius: 2,
-                    boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 15px 50px rgba(0,0,0,0.3)',
-                    },
-                    transition: 'all 0.3s ease',
-                  }}
                   data-testid="hero-cta-primary"
                 >
                   Get Started
@@ -192,24 +171,8 @@ const EnhancedHero = () => {
               <Link to="contact" smooth={true} duration={500} style={{ textDecoration: 'none' }}>
                 <Button
                   variant="outlined"
+                  color="inherit"
                   size="large"
-                  sx={{
-                    color: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
-                    fontWeight: 600,
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1rem',
-                    textTransform: 'none',
-                    borderRadius: 2,
-                    backdropFilter: 'blur(10px)',
-                    '&:hover': {
-                      borderColor: 'white',
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      transform: 'translateY(-2px)',
-                    },
-                    transition: 'all 0.3s ease',
-                  }}
                   data-testid="hero-cta-secondary"
                 >
                   Contact Sales

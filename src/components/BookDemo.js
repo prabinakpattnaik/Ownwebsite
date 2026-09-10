@@ -5,7 +5,7 @@ export default function BookDemo() {
     <Box sx={{ py: 10, backgroundColor: '#f0f4ff' }} id="book-demo">
       <Container maxWidth="md">
         <Stack spacing={4} alignItems="center" textAlign="center">
-          <Typography variant="h4" fontWeight="bold">
+          <Typography component="h2" variant="h2">
             Schedule a Call with our Experts
           </Typography>
           <Typography variant="body1" color="text.secondary" maxWidth="sm">

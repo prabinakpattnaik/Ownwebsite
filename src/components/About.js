@@ -99,49 +99,48 @@ export default function AboutPage() {
           <Avatar
             src={aboutus}
             alt="About us"
-            sx={{ borderRadius: 2, width: { md: "50%" }, height: "auto" }}
+            sx={{ borderRadius: "12px", width: { md: "50%" }, height: "auto" }}
             variant="rounded"
           />
           <Stack spacing={2}>
-            <Typography component="h2" variant="h4" gutterBottom>
+            <Typography component="h2" variant="h2" gutterBottom>
               About Us
             </Typography>
-            <Typography color="text.secondary" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+            <Typography color="text.secondary" paragraph>
               Netrivium empowers dynamic enterprise environments with high-performance connectivity and bespoke SaaS solutions. Our comprehensive offerings span LTE/5G infrastructure, WAN optimization, and Next-Gen secure access (SASE/Zero Trust).
             </Typography>
-            <Typography color="text.secondary" sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+            <Typography color="text.secondary">
               Beyond connectivity, we bring deep expertise across modern platform infrastructure—spanning public cloud, private cloud, and Kubernetes & Containers—to ensure your digital foundation is scalable, secure, and future-ready.
             </Typography>
           </Stack>
         </Stack>
       </Container>
 
-      {/* Highlights Section */}
+      {/* Why Choose Us */}
       <Container>
-        <Typography component="h3" variant="h5" align="center" gutterBottom>
-          What Sets Us Apart
+        <Typography component="h3" variant="h3" align="center" gutterBottom sx={{ mb: 4 }}>
+          Why Choose Us
         </Typography>
-        <Grid container spacing={3} >
+        <Grid container spacing={3}>
           {items.map((item, index) => (
             <Zoom in={isVisible} style={{ transitionDelay: `${index * 200}ms` }} key={index}>
-              <Grid item xs={12} sm={6} md={4} style={{ paddingTop: "42px" }}>
+              <Grid item xs={12} sm={6} md={4}>
                 <Stack
                   direction="column"
                   component={Card}
                   spacing={1}
                   sx={{
                     p: 2,
-                    height: "100%",
-                    transition: "0.3s",
-                    backgroundColor: "#ffffffdd",
-                    "&:hover": {
-                      backgroundColor: "#d4f2f2",
+                    height: '100%',
+                    transition: '0.3s',
+                    '&:hover': {
+                      boxShadow: '0 8px 24px rgba(10, 91, 211, 0.12)',
                     },
                   }}
                 >
                   <Stack direction="row" spacing={2} alignItems="center">
                     <Box sx={{ opacity: 0.5 }}>{item.icon}</Box>
-                    <Typography fontWeight="bold">{item.title}</Typography>
+                    <Typography component="h4" variant="h6">{item.title}</Typography>
                   </Stack>
                   <Typography color="text.secondary">{item.description}</Typography>
                 </Stack>

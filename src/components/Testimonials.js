@@ -57,20 +57,18 @@ const Testimonials = () => {
         {/* Header */}
         <Box textAlign="center" mb={8}>
           <Typography
+            component="p"
             variant="overline"
             sx={{
               color: theme.palette.primary.main,
-              fontWeight: 700,
-              fontSize: '0.9rem',
-              letterSpacing: 2,
             }}
           >
-            TESTIMONIALS
+            Testimonials
           </Typography>
           <Typography
-            variant="h3"
+            component="h2"
+            variant="h2"
             sx={{
-              fontWeight: 700,
               mt: 1,
               mb: 2,
               background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
@@ -81,7 +79,8 @@ const Testimonials = () => {
             What Our Clients Say
           </Typography>
           <Typography
-            variant="h6"
+            component="p"
+            variant="body1"
             color="text.secondary"
             sx={{ maxWidth: 600, mx: 'auto' }}
           >
@@ -96,11 +95,6 @@ const Testimonials = () => {
               <Card
                 sx={{
                   height: '100%',
-                  background: theme.palette.background.paper,
-                  borderRadius: 3,
-                  boxShadow: theme.palette.mode === 'dark'
-                    ? '0 4px 20px rgba(0,0,0,0.3)'
-                    : '0 4px 20px rgba(0,0,0,0.08)',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     transform: 'translateY(-8px)',
@@ -146,7 +140,6 @@ const Testimonials = () => {
                         height: 56,
                         background: 'linear-gradient(135deg, #0A5BD3 0%, #00B7E3 100%)',
                         fontWeight: 700,
-                        fontSize: '1.2rem',
                       }}
                     >
                       {testimonial.avatar}

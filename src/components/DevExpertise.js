@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Box, Card, CardContent, Container, Grid, Stack, Typography } from "@mui/material";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import WebIcon from "@mui/icons-material/Web";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
@@ -32,35 +32,35 @@ export default function DevExpertise() {
   return (
     <Box id="expertise" sx={{ py: 10, backgroundColor: "#f8fbff" }}>
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
-          {/* LEFT: Cards */}
-          <Grid item xs={12} md={7} >
-            <Typography variant="h4" fontWeight="bold" mb={4}>
+        <Grid container spacing={6} alignItems="stretch">
+          <Grid item xs={12} md={7}>
+            <Typography component="h2" variant="h2" mb={4}>
               Our Development Expertise
             </Typography>
-            <Grid container spacing={4} style={{ marginTop: "-80px" }}>
+            <Grid container spacing={3}>
               {devSkills.map((skill, i) => (
-                <Grid item xs={12} sm={6} key={i} style={{ paddingTop: "80px" }}>
-                  <Paper elevation={3} sx={{ p: 4, textAlign: "center", height: "100%" }}>
-                    <Stack spacing={2} alignItems="center">
-                      {skill.icon}
-                      <Typography variant="h6" fontWeight="bold">
-                        {skill.title}
-                      </Typography>
-                      <Typography color="text.secondary">{skill.desc}</Typography>
-                    </Stack>
-                  </Paper>
+                <Grid item xs={12} sm={6} key={i}>
+                  <Card sx={{ height: "100%" }}>
+                    <CardContent sx={{ p: 3, textAlign: "center" }}>
+                      <Stack spacing={2} alignItems="center">
+                        {skill.icon}
+                        <Typography component="h3" variant="h6">
+                          {skill.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">{skill.desc}</Typography>
+                      </Stack>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
           </Grid>
 
-          {/* RIGHT: Illustration Image */}
           <Grid item xs={12} md={5}>
-            <Box display="flex" justifyContent="center">
+            <Box display="flex" justifyContent="center" alignItems="center" height="100%">
               <img
-                src="/assets/dev_expertise.svg" // Image should be in public/assets/
-                alt="Development Illustration"
+                src="/assets/dev_expertise.svg"
+                alt="Illustration of software development expertise"
                 style={{ maxWidth: "100%", height: "auto", borderRadius: 12 }}
               />
             </Box>
